@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "rss/version"
+require "rss"
 
 Gem::Specification.new do |spec|
   spec.name          = "rss"
-  spec.version       = Rss::VERSION
+  spec.version       = RSS::VERSION
   spec.authors       = ["SHIBATA Hiroshi"]
   spec.email         = ["hsbt@ruby-lang.org"]
 
