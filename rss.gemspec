@@ -14,11 +14,18 @@ Gem::Specification.new do |spec|
   spec.homepage      = "https://github.com/ruby/rss"
   spec.license       = "BSD-2-Clause"
 
-  # Specify which files should be added to the gem when it is released.
-  # The `git ls-files -z` loads the files in the RubyGem that have been added into git.
-  spec.files         = Dir.chdir(File.expand_path('..', __FILE__)) do
-    `git ls-files -z`.split("\x0").reject { |f| f.match(%r{^(test|spec|features)/}) }
-  end
+  spec.files         = [".gitignore", ".travis.yml", "Gemfile", "LICENSE.txt", "README.md", "Rakefile",
+  "bin/console", "bin/setup", "lib/rss.rb", "lib/rss/0.9.rb", "lib/rss/1.0.rb", "lib/rss/2.0.rb",
+  "lib/rss/atom.rb", "lib/rss/content.rb", "lib/rss/content/1.0.rb", "lib/rss/content/2.0.rb",
+  "lib/rss/converter.rb", "lib/rss/dublincore.rb", "lib/rss/dublincore/1.0.rb", "lib/rss/dublincore/2.0.rb",
+  "lib/rss/dublincore/atom.rb", "lib/rss/image.rb", "lib/rss/itunes.rb", "lib/rss/maker.rb",
+  "lib/rss/maker/0.9.rb", "lib/rss/maker/1.0.rb", "lib/rss/maker/2.0.rb", "lib/rss/maker/atom.rb",
+  "lib/rss/maker/base.rb", "lib/rss/maker/content.rb", "lib/rss/maker/dublincore.rb", "lib/rss/maker/entry.rb",
+  "lib/rss/maker/feed.rb", "lib/rss/maker/image.rb", "lib/rss/maker/itunes.rb", "lib/rss/maker/slash.rb",
+  "lib/rss/maker/syndication.rb", "lib/rss/maker/taxonomy.rb", "lib/rss/maker/trackback.rb",
+  "lib/rss/parser.rb", "lib/rss/rexmlparser.rb", "lib/rss/rss.rb", "lib/rss/slash.rb", "lib/rss/syndication.rb",
+  "lib/rss/taxonomy.rb", "lib/rss/trackback.rb", "lib/rss/utils.rb", "lib/rss/xml-stylesheet.rb",
+  "lib/rss/xml.rb", "lib/rss/xmlparser.rb", "lib/rss/xmlscanner.rb", "rss.gemspec"]
   spec.bindir        = "exe"
   spec.executables   = spec.files.grep(%r{^exe/}) { |f| File.basename(f) }
   spec.require_paths = ["lib"]
