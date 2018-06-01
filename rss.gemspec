@@ -3,8 +3,8 @@ require_relative "lib/rss"
 Gem::Specification.new do |spec|
   spec.name          = "rss"
   spec.version       = RSS::VERSION
-  spec.authors       = ["SHIBATA Hiroshi"]
-  spec.email         = ["hsbt@ruby-lang.org"]
+  spec.authors       = ["Kouhei Sutou"]
+  spec.email         = ["kou@cozmixng.org"]
 
   spec.summary       = %q{Family of libraries that support various formats of XML "feeds".}
   spec.description   = %q{Family of libraries that support various formats of XML "feeds".}
