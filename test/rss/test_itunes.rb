@@ -203,8 +203,9 @@ module RSS
         _assert_itunes_duration(7, 14, 5, "7:14:05", readers, &rss20_maker)
         _assert_itunes_duration(0, 4, 55, "04:55", readers, &rss20_maker)
         _assert_itunes_duration(0, 4, 5, "4:05", readers, &rss20_maker)
+        _assert_itunes_duration(0, 0, 5, "5", readers, &rss20_maker)
+        _assert_itunes_duration(0, 3, 15, "195", readers, &rss20_maker)
 
-        _assert_itunes_duration_not_available_value("5", &rss20_maker)
         _assert_itunes_duration_not_available_value("09:07:14:05", &rss20_maker)
         _assert_itunes_duration_not_available_value("10:5", &rss20_maker)
         _assert_itunes_duration_not_available_value("10:03:5", &rss20_maker)
