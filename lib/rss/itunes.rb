@@ -278,10 +278,10 @@ module RSS
           if do_validate and /\A(?:
                                   \d?\d:[0-5]\d:[0-5]\d|
                                   [0-5]?\d:[0-5]\d|
-                                  \d*
+                                  \d+
                                 )\z/x !~ duration
             raise ArgumentError,
-                    "must be one of (HH:MM:SS, H:MM:SS, MM:SS, M:SS, SS) : " +
+                    "must be one of HH:MM:SS, H:MM:SS, MM:SS, M:SS, S+: " +
                     duration.inspect
           end
 
@@ -299,15 +299,19 @@ module RSS
         end
 
         def construct(hours, minutes, seconds)
-          return unless minutes && seconds
-
-          components = seconds_to_components(seconds)
-          components[0] += hours
-          components[1] += minutes
-          components.shift unless components[0] > 0
-          format_duration(components)
+          components = [minutes, seconds]
+          if components.include?(nil)
+            nil
+          else
+            components = seconds_to_components(seconds)
+            components[0] += hours
+            components[1] += minutes
+            components.shift unless components[0] > 0
+            format_duration(components)
+          end
         end
 
+        private
         def seconds_to_components(total_seconds)
           hours = total_seconds / (60 * 60)
           minutes = (total_seconds / 60) % 60
