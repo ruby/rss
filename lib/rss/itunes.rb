@@ -303,15 +303,13 @@ module RSS
           if components.include?(nil)
             nil
           else
-            components = seconds_to_components(seconds)
-            components[0] += hours
-            components[1] += minutes
-            components.shift unless components[0] > 0
+            components.unshift(hours) if hours and hours > 0
             format_duration(components)
           end
         end
 
         private
+
         def seconds_to_components(total_seconds)
           hours = total_seconds / (60 * 60)
           minutes = (total_seconds / 60) % 60
