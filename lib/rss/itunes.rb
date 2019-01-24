@@ -304,7 +304,9 @@ module RSS
             nil
           else
             components.unshift(hours) if hours and hours > 0
-            format_duration(components)
+            components.collect do |component|
+              "%02d" % component
+            end.join(':')
           end
         end
 
@@ -315,10 +317,6 @@ module RSS
           minutes = (total_seconds / 60) % 60
           seconds = total_seconds % 60
           [hours, minutes, seconds]
-        end
-
-        def format_duration(components)
-          components.map { |t| "%02d" % t }.join(':')
         end
       end
 
