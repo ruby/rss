@@ -311,7 +311,6 @@ module RSS
         end
 
         private
-
         def seconds_to_components(total_seconds)
           hours = total_seconds / (60 * 60)
           minutes = (total_seconds / 60) % 60
