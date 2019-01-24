@@ -24,8 +24,6 @@ Gem::Specification.new do |spec|
     "NEWS.md",
     "README.md",
     "Rakefile",
-    "bin/console",
-    "bin/setup",
     "lib/rss.rb",
     "lib/rss/0.9.rb",
     "lib/rss/1.0.rb",
