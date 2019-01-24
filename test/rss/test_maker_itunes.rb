@@ -263,6 +263,8 @@ module RSS
         _assert_maker_itunes_duration_invalid_value("10:3:05", maker_readers)
 
         _assert_maker_itunes_duration_invalid_value("xx:xx:xx", maker_readers)
+
+        _assert_maker_itunes_duration_invalid_value("", maker_readers)
       end
     end
 
