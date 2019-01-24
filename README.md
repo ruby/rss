@@ -77,7 +77,7 @@ As you can see, this is a very Builder-like DSL. This code will spit out an Atom
 
 After checking out the repo, run `rake test` to run the tests.
 
-To install this gem onto your local machine, run `rake install`. To release a new version, update the version number in `lib/rss/rss.rb`, and then run `rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
+To install this gem onto your local machine, run `rake install`. To release a new version, update the version number in `lib/rss/version.rb`, and then run `rake release`, which will create a git tag for the version, push git commits and tags, and push the `.gem` file to [rubygems.org](https://rubygems.org).
 
 ## Contributing
 

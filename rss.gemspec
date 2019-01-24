@@ -1,8 +1,8 @@
 begin
-  require_relative "lib/rss"
+  require_relative "lib/rss/version"
 rescue LoadError
   # for Ruby core repository
-  require_relative "rss"
+  require_relative "version"
 end
 
 Gem::Specification.new do |spec|
@@ -63,6 +63,7 @@ Gem::Specification.new do |spec|
     "lib/rss/taxonomy.rb",
     "lib/rss/trackback.rb",
     "lib/rss/utils.rb",
+    "lib/rss/version.rb",
     "lib/rss/xml-stylesheet.rb",
     "lib/rss/xml.rb",
     "lib/rss/xmlparser.rb",
