@@ -171,6 +171,18 @@ module RSS
         end
       end
 
+      class ITunesImageBase < Base
+        add_need_initialize_variable("href")
+        attr_accessor("href")
+
+        def to_feed(feed, current)
+          if @href and current.respond_to?(:itunes_image)
+            current.itunes_image ||= current.class::ITunesImage.new
+            current.itunes_image.href = @href
+          end
+        end
+      end
+
       class ITunesDurationBase < Base
         attr_reader :content
         add_need_initialize_variable("content")
