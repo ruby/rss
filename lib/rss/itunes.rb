@@ -257,6 +257,9 @@ module RSS
       end
     end
 
+    ELEMENT_INFOS = ITunesBaseModel::ELEMENT_INFOS +
+      [["duration", :element, "content"], ["image", :attribute, "href"]]
+
     class ITunesImage < Element
       include RSS09
 
@@ -304,9 +307,6 @@ module RSS
         image.href = href
       end
     end
-
-    ELEMENT_INFOS = ITunesBaseModel::ELEMENT_INFOS +
-      [["duration", :element, "content"]]
 
     class ITunesDuration < Element
       include RSS09
