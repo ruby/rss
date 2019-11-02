@@ -237,6 +237,7 @@ module RSS
       class ItemBase
         include Maker::ITunesItemModel
         class ITunesDuration < ITunesDurationBase; end
+        class ITunesImage < ITunesImageBase; end
       end
     end
   end
