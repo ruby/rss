@@ -1,4 +1,4 @@
 module RSS
   # The current version of RSS
-  VERSION = "0.2.12"
+  VERSION = "0.2.9"
 end
