@@ -41,6 +41,7 @@ module RSS
         channel.itunes_summary = summary
 
         item = maker.items.last
+        item.itunes_image = image
         item.itunes_author = author
         item.itunes_block = block
         item.itunes_duration = duration
@@ -69,6 +70,7 @@ module RSS
                    collect_itunes_categories(channel.itunes_categories))
 
       assert_equal(image, channel.itunes_image.href)
+      assert_equal(image, item.itunes_image.href)
 
       assert_equal(duration_components,
                    [item.itunes_duration.hour,
