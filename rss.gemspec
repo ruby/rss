@@ -15,7 +15,7 @@ Gem::Specification.new do |spec|
     "#{spec.name}.gemspec",
     "Gemfile",
     "LICENSE.txt",
-    "NEWS.txt",
+    "NEWS.md",
     "README.md",
     "Rakefile",
   ]
