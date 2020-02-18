@@ -35,6 +35,10 @@ module RSS
       assert_itunes_image(%w(channel)) do |content, xmlns|
         make_rss20(make_channel20(content), xmlns)
       end
+
+      assert_itunes_image(%w(items last)) do |content, xmlns|
+        make_rss20(make_channel20(make_item20(content)), xmlns)
+      end
     end
 
     def test_duration

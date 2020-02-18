@@ -21,6 +21,7 @@ module RSS
 
     def test_image
       assert_maker_itunes_image(%w(channel))
+      assert_maker_itunes_image(%w(items last))
     end
 
     def test_duration
