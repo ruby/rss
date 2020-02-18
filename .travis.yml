@@ -12,7 +12,7 @@ matrix:
     - name: "2.6"
       rvm: 2.6
     - name: "2.7"
-      rvm: 2.6
+      rvm: 2.7
     - name: "trunk"
       rvm: ruby-head
     - name: "gem"
