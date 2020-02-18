@@ -1,4 +1,4 @@
-require "bundler/gem_tasks"
+require "bundler/gem_helper"
 
 helper = Bundler::GemHelper.new(__dir__)
 def helper.version_tag
