@@ -5,10 +5,10 @@ Really Simple Syndication (RSS) is a family of formats that describe 'feeds,' sp
 The standard library supports RSS 0.91, 1.0, 2.0, and Atom, a related format. Here are some links to the standards documents for these formats:
 
 * RSS
-  * 0.9.1[http://www.rssboard.org/rss-0-9-1-netscape]
-  * 1.0[http://web.resource.org/rss/1.0/]
-  * 2.0[http://www.rssboard.org/rss-specification]
-* Atom[http://tools.ietf.org/html/rfc4287]
+  * [0.9.1][http://www.rssboard.org/rss-0-9-1-netscape]
+  * [1.0][http://web.resource.org/rss/1.0/]
+  * [2.0][http://www.rssboard.org/rss-specification]
+* [Atom][https://tools.ietf.org/html/rfc4287]
 
 ## Installation
 
@@ -36,7 +36,7 @@ If you'd like to read someone's RSS feed with your Ruby code, you've come to the
   require 'rss'
   require 'open-uri'
 
-  url = 'http://www.ruby-lang.org/en/feeds/news.rss'
+  url = 'https://www.ruby-lang.org/en/feeds/news.rss'
   open(url) do |rss|
     feed = RSS::Parser.parse(rss)
     puts "Title: #{feed.channel.title}"
@@ -58,11 +58,11 @@ Producing our own RSS feeds is easy as well. Let's make a very basic feed:
   rss = RSS::Maker.make("atom") do |maker|
     maker.channel.author = "matz"
     maker.channel.updated = Time.now.to_s
-    maker.channel.about = "http://www.ruby-lang.org/en/feeds/news.rss"
+    maker.channel.about = "https://www.ruby-lang.org/en/feeds/news.rss"
     maker.channel.title = "Example Feed"
 
     maker.items.new_item do |item|
-      item.link = "http://www.ruby-lang.org/en/news/2010/12/25/ruby-1-9-2-p136-is-released/"
+      item.link = "https://www.ruby-lang.org/en/news/2010/12/25/ruby-1-9-2-p136-is-released/"
       item.title = "Ruby 1.9.2-p136 is released"
       item.updated = Time.now.to_s
     end
