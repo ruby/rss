@@ -1,4 +1,7 @@
 # frozen_string_literal: false
+
+require "English"
+require "cgi/util"
 require "time"
 
 class Time
@@ -61,8 +64,6 @@ class Time
   end
 end
 
-
-require "English"
 require_relative "utils"
 require_relative "converter"
 require_relative "xml-stylesheet"
@@ -260,7 +261,7 @@ EOC
         end
         if content
           rv = "\#{indent}<#{elem_name}>"
-          value = html_escape(content)
+          value = CGI.escapeHTML(content.to_s)
           if need_convert
             rv << convert(value)
           else
@@ -291,7 +292,7 @@ EOC
         <<-EOC
         if @#{n}
           rv = "\#{indent}<#{elem_name}>"
-          value = html_escape(@#{n}.#{type})
+          value = CGI.escapeHTML(@#{n}.#{type}.to_s)
           if need_convert
             rv << convert(value)
           else
@@ -375,7 +376,7 @@ EOC
         module_eval(<<-EOC, __FILE__, __LINE__ + 1)
           attr_reader(:#{attr})
           def #{attr}?
-            ExplicitCleanOther.parse(@#{attr})
+            Utils::ExplicitCleanOther.parse(@#{attr})
           end
         EOC
       end
@@ -659,7 +660,6 @@ EOC
 
   class Element
     extend BaseModel
-    include Utils
     extend Utils::InheritedReader
     include SetupMaker
 
@@ -1023,7 +1023,7 @@ EOC
       start_tag = ["#{indent}<#{full_name}"]
       unless attrs.empty?
         start_tag << attrs.collect do |key, value|
-          %Q[#{h key}="#{h value}"]
+          %Q[#{CGI.escapeHTML(key.to_s)}="#{CGI.escapeHTML(value.to_s)}"]
         end.join("\n#{next_indent}")
       end
       start_tag.join(" ")
@@ -1231,7 +1231,7 @@ EOC
       else
         _content = content
         _content = [_content].pack("m0") if need_base64_encode?
-        h(_content)
+        CGI.escapeHTML(_content.to_s)
       end
     end
   end

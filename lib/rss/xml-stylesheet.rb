@@ -1,5 +1,6 @@
 # frozen_string_literal: false
-require_relative "utils"
+
+require "cgi/util"
 
 module RSS
 
@@ -23,8 +24,6 @@ module RSS
   end
 
   class XMLStyleSheet
-
-    include Utils
 
     ATTRIBUTES = %w(href type title media charset alternate)
 
@@ -59,7 +58,7 @@ module RSS
         rv << %Q[<?xml-stylesheet]
         ATTRIBUTES.each do |name|
           if __send__(name)
-            rv << %Q[ #{name}="#{h __send__(name)}"]
+            rv << %Q[ #{name}="#{CGI.escapeHTML(__send__(name).to_s)}"]
           end
         end
         rv << %Q[?>]

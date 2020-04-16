@@ -68,7 +68,7 @@ module RSS
           the existing technical infrastructure of the Internet.",
       :creator => "Rael Dornfest (mailto:rael@oreilly.com)",
       :subject => "XML",
-      :publisher => "The O'Reilly Network",
+      :publisher => "The O&#39;Reilly Network",
       :contributor => "hogehoge",
       :type => "fugafuga",
       :format => "hohoho",
@@ -76,7 +76,7 @@ module RSS
       :source => "barbar",
       :language => "ja",
       :relation => "cococo",
-      :rights => "Copyright (c) 2000 O'Reilly &amp; Associates, Inc.",
+      :rights => "Copyright (c) 2000 O&#39;Reilly &amp; Associates, Inc.",
       :date => t,
     }
 

@@ -1,5 +1,6 @@
 # frozen_string_literal: false
-require_relative "utils"
+
+require "cgi/util"
 
 module RSS
   module XML
@@ -46,7 +47,7 @@ module RSS
       def to_s
         rv = "<#{full_name}"
         attributes.each do |key, value|
-          rv << " #{Utils.html_escape(key)}=\"#{Utils.html_escape(value)}\""
+          rv << " #{CGI.escapeHTML(key.to_s)}=\"#{CGI.escapeHTML(value.to_s)}\""
         end
         if children.empty?
           rv << "/>"

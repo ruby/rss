@@ -87,24 +87,6 @@ module RSS
       [file, line]
     end
 
-    # Takes a string +s+ with some HTML in it, and escapes '&', '"', '<' and '>', by
-    # replacing them with the appropriate entities.
-    #
-    # This method is also aliased to h, for convenience.
-    #
-    # Examples:
-    #
-    #   require 'rss/utils'
-    #
-    #   RSS::Utils.html_escape("Dungeons & Dragons")
-    #   # => "Dungeons &amp; Dragons"
-    #   RSS::Utils.h(">_>")
-    #   # => "&gt;_&gt;"
-    def html_escape(s)
-      s.to_s.gsub(/&/, "&amp;").gsub(/\"/, "&quot;").gsub(/>/, "&gt;").gsub(/</, "&lt;")
-    end
-    alias h html_escape
-
     # If +value+ is an instance of class +klass+, return it, else
     # create a new instance of +klass+ with value +value+.
     def new_with_value_if_need(klass, value)
