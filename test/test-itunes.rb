@@ -99,6 +99,12 @@ module RSS
       end
     end
 
+    def test_type
+      assert_itunes_type(%w(channel)) do |content, xmlns|
+        make_rss20(make_channel20(content), xmlns)
+      end
+    end
+
     private
     def itunes_rss20_parse(content, &maker)
       xmlns = {"itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd"}
@@ -354,6 +360,20 @@ module RSS
                                "Red state if you're a Blue person. Or " +
                                "vice versa.",
                                readers, &rss20_maker)
+      end
+    end
+
+    def _assert_itunes_type(type, readers, &rss20_maker)
+      content = tag("itunes:type", type)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      assert_equal(type, target.itunes_type)
+    end
+
+    def assert_itunes_type(readers, &rss20_maker)
+      _wrap_assertion do
+        _assert_itunes_type("episodic", readers, &rss20_maker)
+        _assert_itunes_type("serial", readers, &rss20_maker)
       end
     end
   end

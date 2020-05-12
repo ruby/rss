@@ -53,6 +53,7 @@ module RSS
                      ["block", :yes_other],
                      ["explicit", :explicit_clean_other],
                      ["keywords", :csv],
+                     ["type"],
                      ["subtitle"],
                      ["summary"]]
   end
