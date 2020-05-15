@@ -351,7 +351,7 @@ module RSS
       def setup_maker_elements(channel)
         super
         items = channel.maker.items
-        entries.each do |entry|
+        entries.each_entry do |entry|
           entry.setup_maker(items)
         end
       end
@@ -559,7 +559,7 @@ module RSS
          ["summary", "?", :child],
          ["title", nil],
          ["updated", nil, :child, :content],
-        ].each do |tag, occurs, type, *args|
+        ].each_entry do |tag, occurs, type, *args|
           type ||= :attribute
           __send__("install_have_#{type}_element",
                    tag, URI, occurs, tag, *args)
@@ -912,7 +912,7 @@ module RSS
        ["summary", "?"],
        ["title", nil],
        ["updated", nil, nil, :content],
-      ].each do |tag, occurs, type, *args|
+      ].each_entry do |tag, occurs, type, *args|
         type ||= :attribute
         __send__("install_have_#{type}_element",
                  tag, URI, occurs, tag, *args)
