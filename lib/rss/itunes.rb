@@ -54,7 +54,9 @@ module RSS
                      ["explicit", :explicit_clean_other],
                      ["keywords", :csv],
                      ["subtitle"],
-                     ["summary"]]
+                     ["summary"],
+                     ["season"],
+                     ["episode"]]
   end
 
   module ITunesChannelModel
