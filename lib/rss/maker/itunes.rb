@@ -197,7 +197,7 @@ module RSS
             @hour, @minute, @second, @content = nil
           else
             @hour, @minute, @second =
-              ::RSS::ITunesItemModel::ITunesDuration.parse(content)
+              ::RSS::ITunesItemModel::ITunesDuration.parse(content.to_s)
             @content = content
           end
         end

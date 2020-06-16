@@ -400,7 +400,7 @@ module RSS
           self.content = value.content
         else
           begin
-            @hour, @minute, @second = self.class.parse(value, @do_validate)
+            @hour, @minute, @second = self.class.parse(value.to_s, @do_validate)
           rescue ArgumentError
             raise NotAvailableValueError.new(tag_name, value)
           end
