@@ -80,6 +80,7 @@ module RSS
                      ["image", :attribute, "href"],
                      ["owner", :element],
                      ["new-feed-url"],
+                     ["type", :itunes_episode],
                     ] + ITunesBaseModel::ELEMENT_INFOS
 
     class ITunesCategory < Element

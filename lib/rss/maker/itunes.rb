@@ -15,6 +15,8 @@ module RSS
           def_yes_other_accessor(klass, full_name)
         when :explicit_clean_other
           def_explicit_clean_other_accessor(klass, full_name)
+        when :itunes_episode
+          def_itunes_episode_accessor(klass, full_name)
         when :csv
           def_csv_accessor(klass, full_name)
         when :element, :attribute
@@ -50,6 +52,10 @@ module RSS
             Utils::ExplicitCleanOther.parse(#{full_name})
           end
         EOC
+      end
+
+      def def_itunes_episode_accessor(klass, full_name)
+        klass.def_other_element(full_name)
       end
 
       def def_csv_accessor(klass, full_name)
