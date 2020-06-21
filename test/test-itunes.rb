@@ -73,6 +73,12 @@ module RSS
       end
     end
 
+    def test_type
+      assert_itunes_type(%w(channel)) do |content, xmlns|
+        make_rss20(make_channel20(content), xmlns)
+      end
+    end
+
     def test_owner
       assert_itunes_owner(%w(channel)) do |content, xmlns|
         make_rss20(make_channel20(content), xmlns)
@@ -96,12 +102,6 @@ module RSS
 
       assert_itunes_summary(%w(items last)) do |content, xmlns|
         make_rss20(make_channel20(make_item20(content)), xmlns)
-      end
-    end
-
-    def test_type
-      assert_itunes_type(%w(channel)) do |content, xmlns|
-        make_rss20(make_channel20(content), xmlns)
       end
     end
 
@@ -281,6 +281,28 @@ module RSS
       end
     end
 
+    def _assert_itunes_type(type, readers, &rss20_maker)
+      content = tag("itunes:type", type)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      assert_equal(type, target.itunes_type)
+    end
+
+    def _assert_itunes_type_not_available_value(value, &rss20_maker)
+      assert_not_available_value("type", value) do
+        content = tag("itunes:type", value)
+        itunes_rss20_parse(content, &rss20_maker)
+      end
+    end
+
+    def assert_itunes_type(readers, &rss20_maker)
+      _wrap_assertion do
+        _assert_itunes_type("episodic", readers, &rss20_maker)
+        _assert_itunes_type("serial", readers, &rss20_maker)
+        _assert_itunes_type_not_available_value("invalid", &rss20_maker)
+      end
+    end
+
     def _assert_itunes_owner(name, email, readers, &rss20_maker)
       content = tag("itunes:owner",
                     tag("itunes:name", name) + tag("itunes:email", email))
@@ -360,20 +382,6 @@ module RSS
                                "Red state if you're a Blue person. Or " +
                                "vice versa.",
                                readers, &rss20_maker)
-      end
-    end
-
-    def _assert_itunes_type(type, readers, &rss20_maker)
-      content = tag("itunes:type", type)
-      rss20 = itunes_rss20_parse(content, &rss20_maker)
-      target = chain_reader(rss20, readers)
-      assert_equal(type, target.itunes_type)
-    end
-
-    def assert_itunes_type(readers, &rss20_maker)
-      _wrap_assertion do
-        _assert_itunes_type("episodic", readers, &rss20_maker)
-        _assert_itunes_type("serial", readers, &rss20_maker)
       end
     end
   end

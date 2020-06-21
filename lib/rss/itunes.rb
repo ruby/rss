@@ -53,7 +53,6 @@ module RSS
                      ["block", :yes_other],
                      ["explicit", :explicit_clean_other],
                      ["keywords", :csv],
-                     ["type"],
                      ["subtitle"],
                      ["summary"]]
   end
@@ -81,6 +80,7 @@ module RSS
                      ["image", :attribute, "href"],
                      ["owner", :element],
                      ["new-feed-url"],
+                     ["type", :itunes_episode],
                     ] + ITunesBaseModel::ELEMENT_INFOS
 
     class ITunesCategory < Element

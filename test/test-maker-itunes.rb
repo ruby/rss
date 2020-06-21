@@ -42,6 +42,10 @@ module RSS
       assert_maker_itunes_new_feed_url(%w(channel))
     end
 
+    def test_type
+      assert_maker_itunes_type(%w(channel))
+    end
+
     def test_owner
       assert_maker_itunes_owner(%w(channel))
     end
@@ -376,6 +380,21 @@ module RSS
       end
       target = chain_reader(rss20, feed_readers)
       assert_equal(url, target.itunes_new_feed_url)
+    end
+
+    def assert_maker_itunes_type(maker_readers, feed_readers=nil)
+      feed_readers ||= maker_readers
+      type = "serial"
+
+      rss20 = ::RSS::Maker.make("rss2.0") do |maker|
+        setup_dummy_channel(maker)
+        setup_dummy_item(maker)
+
+        target = chain_reader(maker, maker_readers)
+        target.itunes_type = type
+      end
+      target = chain_reader(rss20, feed_readers)
+      assert_equal(type, target.itunes_type)
     end
 
     def _assert_maker_itunes_owner(name, email, maker_readers, feed_readers)

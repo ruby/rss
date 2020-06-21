@@ -577,6 +577,18 @@ EOC
       EOC
     end
 
+    def itunes_episode_writer(name, disp_name=name)
+      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+        def #{name}=(new_value)
+          if @do_validate and
+               !["episodic", "serial", nil].include?(new_value)
+            raise NotAvailableValueError.new('#{disp_name}', new_value)
+          end
+          @#{name} = new_value
+        end
+      EOC
+    end
+
     def def_children_accessor(accessor_name, plural_name)
       module_eval(<<-EOC, *get_file_and_line_from_caller(2))
       def #{plural_name}
@@ -763,9 +775,11 @@ EOC
         when :yes_other
           yes_other_writer name, disp_name
         when :csv
-          csv_writer name
+          csv_writer name, disp_name
         when :csv_integer
-          csv_integer_writer name
+          csv_integer_writer name, disp_name
+        when :itunes_episode
+          itunes_episode_writer name, disp_name
         else
           attr_writer name
         end
