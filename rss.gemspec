@@ -12,12 +12,9 @@ Gem::Specification.new do |spec|
   spec.license       = "BSD-2-Clause"
 
   spec.files = [
-    "#{spec.name}.gemspec",
-    "Gemfile",
     "LICENSE.txt",
     "NEWS.md",
     "README.md",
-    "Rakefile",
   ]
   spec.files += Dir.glob("lib/**/*.rb")
   spec.test_files += Dir.glob("test/**/*")
