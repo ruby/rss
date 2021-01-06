@@ -12,7 +12,6 @@ Gem::Specification.new do |spec|
   spec.license       = "BSD-2-Clause"
 
   spec.files = [
-    "Gemfile",
     "LICENSE.txt",
     "NEWS.md",
     "README.md",
