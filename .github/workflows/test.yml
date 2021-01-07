@@ -1,0 +1,59 @@
+name: Test
+on:
+  - push
+  - pull_request
+jobs:
+  inplace:
+    name: ${{ matrix.ruby-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        ruby-version:
+          - "2.5"
+          - "2.6"
+          - "2.7"
+          - jruby
+        # include:
+        #   - runs-on: ubuntu-latest
+        #     ruby-version: truffleruby
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+          bundler-cache: true
+      - name: Test
+        run: bundle exec rake test
+
+  gem:
+    name: ${{ matrix.ruby-version }} on ${{ matrix.runs-on }}
+    runs-on: ${{ matrix.runs-on }}
+    strategy:
+      fail-fast: false
+      matrix:
+        runs-on:
+          - ubuntu-latest
+          - macos-latest
+          - windows-latest
+        ruby-version:
+          - "3.0"
+          - head
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: ${{ matrix.ruby-version }}
+      - name: Install as gem
+        run: |
+          rake install
+      - name: Test
+        run: |
+          ruby -run -e mkdir -- tmp
+          ruby -run -e cp -- -p -r test tmp
+          cd tmp
+          ruby test/run-test.rb
