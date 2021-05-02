@@ -370,32 +370,32 @@ module RSS
        rss20 = itunes_rss20_parse(content, &rss20_maker)
        target = chain_reader(rss20, readers)
        assert_equal(type, target.itunes_season)
-     end
+    end
 
-     def assert_itunes_season(readers, &rss20_maker)
-       _wrap_assertion do
-         _assert_itunes_season("1", readers, &rss20_maker)
-         _assert_itunes_season("2", readers, &rss20_maker)
-         _assert_itunes_season("3", readers, &rss20_maker)
-         _assert_itunes_season("4", readers, &rss20_maker)
-       end
-     end
+    def assert_itunes_season(readers, &rss20_maker)
+      _wrap_assertion do
+        _assert_itunes_season("1", readers, &rss20_maker)
+        _assert_itunes_season("2", readers, &rss20_maker)
+        _assert_itunes_season("3", readers, &rss20_maker)
+        _assert_itunes_season("4", readers, &rss20_maker)
+      end
+    end
 
-     def _assert_itunes_episode(episode, readers, &rss20_maker)
-       content = tag("itunes:episode", type)
-       rss20 = itunes_rss20_parse(content, &rss20_maker)
-       target = chain_reader(rss20, readers)
-       assert_equal(type, target.itunes_episode)
-     end
+    def _assert_itunes_episode(episode, readers, &rss20_maker)
+      content = tag("itunes:episode", type)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      assert_equal(type, target.itunes_episode)
+    end
 
-     def _assert_itunes_episode(readers, &rss20_maker)
-       _wrap_assertion do
-         _assert_itunes_episode("1", readers, &rss20_maker)
-         _assert_itunes_episode("2", readers, &rss20_maker)
-         _assert_itunes_episode("3", readers, &rss20_maker)
-         _assert_itunes_episode("4", readers, &rss20_maker)
-       end
-     end
+    def assert_itunes_episode(readers, &rss20_maker)
+      _wrap_assertion do
+        _assert_itunes_episode("1", readers, &rss20_maker)
+        _assert_itunes_episode("2", readers, &rss20_maker)
+        _assert_itunes_episode("3", readers, &rss20_maker)
+        _assert_itunes_episode("4", readers, &rss20_maker)
+      end
+    end
 
     def _assert_itunes_summary(value, readers, &rss20_maker)
       content = tag("itunes:summary", value)
