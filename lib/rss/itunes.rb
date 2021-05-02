@@ -54,9 +54,7 @@ module RSS
                      ["explicit", :explicit_clean_other],
                      ["keywords", :csv],
                      ["subtitle"],
-                     ["summary"],
-                     ["season"],
-                     ["episode"]]
+                     ["summary"]]
   end
 
   module ITunesChannelModel
@@ -83,6 +81,8 @@ module RSS
                      ["owner", :element],
                      ["new-feed-url"],
                      ["type", :itunes_episode],
+                     ["season"],
+                     ["episode"],
                     ] + ITunesBaseModel::ELEMENT_INFOS
 
     class ITunesCategory < Element
