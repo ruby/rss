@@ -106,13 +106,13 @@ module RSS
     end
 
     def test_season
-      assert_assert_itunes_season(%w(channel)) do |content, xmlns|
+      assert_itunes_season(%w(channel)) do |content, xmlns|
          make_rss20(make_channel20(content), xmlns)
       end
     end
 
     def test_episode
-      assert_assert_itunes_episode(%w(channel)) do |content, xmlns|
+      assert_itunes_episode(%w(channel)) do |content, xmlns|
          make_rss20(make_channel20(content), xmlns)
       end
     end
