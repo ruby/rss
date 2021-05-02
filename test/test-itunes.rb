@@ -369,7 +369,7 @@ module RSS
        content = tag("itunes:season", season)
        rss20 = itunes_rss20_parse(content, &rss20_maker)
        target = chain_reader(rss20, readers)
-       assert_equal(type, target.itunes_season)
+       assert_equal(season, target.itunes_season)
     end
 
     def assert_itunes_season(readers, &rss20_maker)
@@ -382,10 +382,10 @@ module RSS
     end
 
     def _assert_itunes_episode(episode, readers, &rss20_maker)
-      content = tag("itunes:episode", type)
+      content = tag("itunes:episode", episode)
       rss20 = itunes_rss20_parse(content, &rss20_maker)
       target = chain_reader(rss20, readers)
-      assert_equal(type, target.itunes_episode)
+      assert_equal(episode, target.itunes_episode)
     end
 
     def assert_itunes_episode(readers, &rss20_maker)
