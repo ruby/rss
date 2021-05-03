@@ -105,6 +105,18 @@ module RSS
       end
     end
 
+    def test_season
+      assert_itunes_season(%w(items last)) do |content, xmlns|
+         make_rss20(make_channel20(make_item20(content)), xmlns)
+      end
+    end
+
+    def test_episode
+      assert_itunes_episode(%w(items last)) do |content, xmlns|
+         make_rss20(make_channel20(make_item20(content)), xmlns)
+      end
+    end
+
     private
     def itunes_rss20_parse(content, &maker)
       xmlns = {"itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd"}
@@ -350,6 +362,38 @@ module RSS
         _assert_itunes_subtitle("Comparing socket wrenches is fun!",
                                 readers, &rss20_maker)
         _assert_itunes_subtitle("Red + Blue != Purple", readers, &rss20_maker)
+      end
+    end
+
+    def set_itunes_season(season, readers, &rss20_maker)
+       content = tag("itunes:season", season)
+       rss20 = itunes_rss20_parse(content, &rss20_maker)
+       target = chain_reader(rss20, readers)
+       target.itunes_season
+    end
+
+    def assert_itunes_season(readers, &rss20_maker)
+      _wrap_assertion do
+        assert_equal(1, set_itunes_season("1", readers, &rss20_maker))
+        assert_raise(NotAvailableValueError.new("season", "0")) do
+          set_itunes_season("0", readers, &rss20_maker)
+        end
+      end
+    end
+
+    def set_itunes_episode(episode, readers, &rss20_maker)
+      content = tag("itunes:episode", episode)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      target.itunes_episode
+    end
+
+    def assert_itunes_episode(readers, &rss20_maker)
+      _wrap_assertion do
+        assert_equal(1, set_itunes_episode("1", readers, &rss20_maker))
+        assert_raise(NotAvailableValueError.new("episode", "0")) do
+          set_itunes_episode("0", readers, &rss20_maker)
+        end
       end
     end
 
