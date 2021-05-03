@@ -81,8 +81,6 @@ module RSS
                      ["owner", :element],
                      ["new-feed-url"],
                      ["type", :itunes_episode],
-                     ["season"],
-                     ["episode"],
                     ] + ITunesBaseModel::ELEMENT_INFOS
 
     class ITunesCategory < Element
