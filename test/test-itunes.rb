@@ -365,35 +365,35 @@ module RSS
       end
     end
 
-    def _assert_itunes_season(season, readers, &rss20_maker)
+    def set_itunes_season(season, readers, &rss20_maker)
        content = tag("itunes:season", season)
        rss20 = itunes_rss20_parse(content, &rss20_maker)
        target = chain_reader(rss20, readers)
-       assert_equal(season, target.itunes_season)
+       target.itunes_season
     end
 
     def assert_itunes_season(readers, &rss20_maker)
       _wrap_assertion do
-        _assert_itunes_season("1", readers, &rss20_maker)
-        _assert_itunes_season("2", readers, &rss20_maker)
-        _assert_itunes_season("3", readers, &rss20_maker)
-        _assert_itunes_season("4", readers, &rss20_maker)
+        assert_equal(1, set_itunes_season("1", readers, &rss20_maker))
+        assert_raise(NotAvailableValueError.new("season", "0")) do
+          set_itunes_season("0", readers, &rss20_maker)
+        end
       end
     end
 
-    def _assert_itunes_episode(episode, readers, &rss20_maker)
+    def set_itunes_episode(episode, readers, &rss20_maker)
       content = tag("itunes:episode", episode)
       rss20 = itunes_rss20_parse(content, &rss20_maker)
       target = chain_reader(rss20, readers)
-      assert_equal(episode, target.itunes_episode)
+      target.itunes_episode
     end
 
     def assert_itunes_episode(readers, &rss20_maker)
       _wrap_assertion do
-        _assert_itunes_episode("1", readers, &rss20_maker)
-        _assert_itunes_episode("2", readers, &rss20_maker)
-        _assert_itunes_episode("3", readers, &rss20_maker)
-        _assert_itunes_episode("4", readers, &rss20_maker)
+        assert_equal(1, set_itunes_episode("1", readers, &rss20_maker))
+        assert_raise(NotAvailableValueError.new("episode", "0")) do
+          set_itunes_episode("0", readers, &rss20_maker)
+        end
       end
     end
 
