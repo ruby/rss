@@ -180,12 +180,12 @@ EOA
     end
 
     def test_feed_id
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(FEED_ID, feed.id.content)
     end
 
     def test_entry_id
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(ENTRY_ID, feed.entry.id.content)
     end
 
@@ -239,22 +239,22 @@ EOA
     end
 
     def test_feed_title
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(FEED_TITLE, feed.title.content)
     end
 
     def test_entry_title
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(ENTRY_TITLE, feed.entry.title.content)
     end
 
     def test_feed_updated
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(Time.parse(FEED_UPDATED), feed.updated.content)
     end
 
     def test_entry_updated
-      feed = RSS::Parser.parse(make_feed(''))
+      feed = RSS::Parser.parse(make_feed(""))
       assert_equal(Time.parse(ENTRY_UPDATED), feed.entry.updated.content)
     end
 

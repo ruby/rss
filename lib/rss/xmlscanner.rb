@@ -1,6 +1,6 @@
 # frozen_string_literal: false
-require 'xmlscan/scanner'
-require 'stringio'
+require "xmlscan/scanner"
+require "stringio"
 
 module RSS
 
@@ -36,11 +36,11 @@ module RSS
     include ListenerMixin
 
     ENTITIES = {
-      'lt' => '<',
-      'gt' => '>',
-      'amp' => '&',
-      'quot' => '"',
-      'apos' => '\''
+      "lt" => "<",
+      "gt" => ">",
+      "amp" => "&",
+      "quot" => '"',
+      "apos" => "'"
     }
 
     def on_xmldecl_version(str)
@@ -72,7 +72,7 @@ module RSS
     end
 
     def on_charref(code)
-      text([code].pack('U'))
+      text([code].pack("U"))
     end
 
     alias_method(:on_charref_hex, :on_charref)
@@ -82,7 +82,7 @@ module RSS
     end
 
     def on_attribute(name)
-      @attrs[name] = @current_attr = ''
+      @attrs[name] = @current_attr = ""
     end
 
     def on_attr_value(str)
@@ -94,7 +94,7 @@ module RSS
     end
 
     def on_attr_charref(code)
-      @current_attr << [code].pack('U')
+      @current_attr << [code].pack("U")
     end
 
     alias_method(:on_attr_charref_hex, :on_attr_charref)
@@ -111,11 +111,7 @@ module RSS
     private
     def entity(ref)
       ent = ENTITIES[ref]
-      if ent
-        ent
-      else
-        wellformed_error("undefined entity: #{ref}")
-      end
+      ent || wellformed_error("undefined entity: #{ref}")
     end
   end
 

@@ -87,7 +87,7 @@ module RSS
     def xmldecl(version, encoding, standalone)
       super
       # Encoding is converted to UTF-8 when XMLParser parses XML.
-      @encoding = 'UTF-8'
+      @encoding = "UTF-8"
     end
 
   end

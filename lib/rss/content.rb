@@ -3,7 +3,7 @@ require_relative "rss"
 
 module RSS
   # The prefix for the Content XML namespace.
-  CONTENT_PREFIX = 'content'
+  CONTENT_PREFIX = "content"
   # The URI of the Content specification.
   CONTENT_URI = "http://purl.org/rss/1.0/modules/content/"
 
@@ -30,5 +30,5 @@ module RSS
   end
 end
 
-require 'rss/content/1.0'
-require 'rss/content/2.0'
+require "rss/content/1.0"
+require "rss/content/2.0"

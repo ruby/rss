@@ -25,7 +25,7 @@ class Time
             \s*\z/ix =~ date and (($5 and $8) or (!$5 and !$8))
           datetime = [$1.to_i, $2.to_i, $3.to_i, $4.to_i, $5.to_i, $6.to_i]
           usec = 0
-          usec = $7.to_f * 1000000 if $7
+          usec = $7.to_f * 1_000_000 if $7
           zone = $8
           if zone
             off = zone_offset(zone, datetime[0])
@@ -57,7 +57,7 @@ class Time
       if usec.zero?
         fraction_digits = 0
       else
-        fraction_digits = strftime('%6N').index(/0*\z/)
+        fraction_digits = strftime("%6N").index(/0*\z/)
       end
       xmlschema(fraction_digits)
     end
@@ -310,7 +310,7 @@ EOC
 
     private
     def install_element(name, postfix="")
-      elem_name = name.sub('_', ':')
+      elem_name = name.sub("_", ":")
       method_name = "#{name}_element#{postfix}"
       add_to_element_method(method_name)
       module_eval(<<-EOC, *get_file_and_line_from_caller(2))
@@ -733,7 +733,7 @@ EOC
 
       def install_model(tag, uri, occurs=nil, getter=nil, plural=false)
         getter ||= tag
-        if m = self::MODELS.find {|t, u, o, g, p| t == tag and u == uri}
+        if (m = self::MODELS.find {|t, u, o, g, p| t == tag and u == uri})
           m[2] = occurs
         else
           self::MODELS << [tag, uri, occurs, getter, plural]
@@ -915,7 +915,7 @@ EOC
       __validate(ignore_unknown_element, tags, false)
     end
 
-    def to_s(need_convert=true, indent='')
+    def to_s(need_convert=true, indent="")
       if self.class.have_content?
         return "" if !empty_content? and !content_is_set?
         rv = tag(indent) do |next_indent|
@@ -950,7 +950,7 @@ EOC
       prefix << "#{klass.required_prefix}_" if klass.required_prefix
       key = "#{prefix}#{tag_name.gsub(/-/, '_')}"
       if self.class.plural_forms.has_key?(key)
-        ary = __send__("#{self.class.plural_forms[key]}")
+        ary = __send__(self.class.plural_forms[key].to_s)
         ary << next_element
       else
         __send__("#{key}=", next_element)
@@ -1061,7 +1061,7 @@ EOC
 
     # For backward compatibility
     def calc_indent
-      ''
+      ""
     end
 
     def children
@@ -1158,7 +1158,7 @@ EOC
         end
 
         case occurs
-        when '?'
+        when "?"
           if count > 2
             raise TooMuchTagError.new(name, tag_name)
           else
@@ -1168,13 +1168,13 @@ EOC
               not_shift = true
             end
           end
-        when '*'
+        when "*"
           if name == tag
             do_redo = true
           else
             not_shift = true
           end
-        when '+'
+        when "+"
           if name == tag
             do_redo = true
           else
@@ -1262,7 +1262,7 @@ EOC
       @feed_type = nil
       @feed_subtype = nil
       @feed_version = feed_version
-      @version = version || '1.0'
+      @version = version || "1.0"
       @encoding = encoding
       @standalone = standalone
       @output_encoding = nil

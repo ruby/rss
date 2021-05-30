@@ -18,7 +18,7 @@ end
 
 before_time = Time.now
 ARGV.each do |fname|
-  if fname == '-v'
+  if fname == "-v"
     verbose = true
     next
   end

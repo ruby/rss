@@ -2,7 +2,7 @@
 require "erb"
 
 require "test/unit"
-require_relative 'rss-assertions'
+require_relative "rss-assertions"
 
 require "rss"
 
@@ -118,7 +118,7 @@ EORSS
 
   <items>
     <rdf:Seq>
-#{RESOURCES.collect do |res| '<rdf:li resource="' + res + '" />' end.join("\n")}
+#{RESOURCES.collect { |res| '<rdf:li resource="' + res + '" />' }.join("\n")}
     </rdf:Seq>
   </items>
 

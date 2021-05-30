@@ -1,13 +1,13 @@
 # frozen_string_literal: false
-require 'rss/1.0'
-require_relative 'dublincore'
+require "rss/1.0"
+require_relative "dublincore"
 
 module RSS
 
   # The prefix for the Image XML namespace.
-  IMAGE_PREFIX = 'image'
+  IMAGE_PREFIX = "image"
   # The URI for the Image specification.
-  IMAGE_URI = 'http://purl.org/rss/1.0/modules/image/'
+  IMAGE_URI = "http://purl.org/rss/1.0/modules/image/"
 
   RDF.install_ns(IMAGE_PREFIX, IMAGE_URI)
 
@@ -23,7 +23,7 @@ module RSS
 
   module ImageModelUtils
     def validate_one_tag_name(ignore_unknown_element, name, tags)
-      if !ignore_unknown_element
+      unless ignore_unknown_element
         invalid = tags.find {|tag| tag != name}
         raise UnknownTagError.new(invalid, IMAGE_URI) if invalid
       end

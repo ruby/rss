@@ -120,7 +120,7 @@ module RSS
 
       if uri.respond_to?(:read)
         uri.read
-      elsif (RUBY_VERSION >= '2.7' || !rss.tainted?) and File.readable?(rss)
+      elsif (RUBY_VERSION >= "2.7" || !rss.tainted?) and File.readable?(rss)
         File.open(rss) {|f| f.read}
       else
         rss
@@ -289,7 +289,7 @@ module RSS
       @do_validate = true
       @ns_stack = [{"xml" => :xml}]
       @tag_stack = [[]]
-      @text_stack = ['']
+      @text_stack = [""]
       @proc_stack = []
       @last_element = nil
       @version = @encoding = @standalone = nil
@@ -314,7 +314,7 @@ module RSS
     end
 
     def tag_start(name, attributes)
-      @text_stack.push('')
+      @text_stack.push("")
 
       ns = @ns_stack.last.dup
       attrs = {}
@@ -439,7 +439,7 @@ module RSS
     NAMESPLIT = /^(?:([\w:][-\w.]*):)?([\w:][-\w.]*)/
     def split_name(name)
       name =~ NAMESPLIT
-      [$1 || '', $2]
+      [$1 || "", $2]
     end
 
     def check_ns(tag_name, prefix, ns, require_uri, ignore_unknown_element=nil)
@@ -545,7 +545,7 @@ module RSS
         else
           if klass.have_content?
             if @last_element.need_base64_encode?
-              text = text.lstrip.unpack("m").first
+              text = text.lstrip.unpack1("m")
             end
             @last_element.content = text
           end

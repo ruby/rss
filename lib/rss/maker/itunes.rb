@@ -1,12 +1,12 @@
 # frozen_string_literal: false
-require_relative '../itunes'
-require_relative '2.0'
+require_relative "../itunes"
+require_relative "2.0"
 
 module RSS
   module Maker
     module ITunesBaseModel
       def def_class_accessor(klass, name, type, *args)
-        name = name.gsub(/-/, "_").gsub(/^itunes_/, '')
+        name = name.gsub(/-/, "_").gsub(/^itunes_/, "")
         full_name = "#{RSS::ITUNES_PREFIX}_#{name}"
         case type
         when nil

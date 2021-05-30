@@ -3,7 +3,7 @@ require_relative "rss"
 
 module RSS
   # The prefix for the Dublin Core XML namespace.
-  DC_PREFIX = 'dc'
+  DC_PREFIX = "dc"
   # The URI of the Dublin Core specification.
   DC_URI = "http://purl.org/dc/elements/1.1/"
 
@@ -81,7 +81,7 @@ module RSS
     }
 
     ELEMENT_NAME_INFOS = DublinCoreModel::TEXT_ELEMENTS.to_a
-    DublinCoreModel::DATE_ELEMENTS.each do |name, |
+    DublinCoreModel::DATE_ELEMENTS.each do |name,|
       ELEMENT_NAME_INFOS << [name, nil]
     end
 
@@ -159,6 +159,6 @@ module RSS
   DublinCoreModel::ELEMENTS.collect! {|name| "#{DC_PREFIX}_#{name}"}
 end
 
-require 'rss/dublincore/1.0'
-require 'rss/dublincore/2.0'
-require_relative 'dublincore/atom'
+require "rss/dublincore/1.0"
+require "rss/dublincore/2.0"
+require_relative "dublincore/atom"

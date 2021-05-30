@@ -20,7 +20,7 @@ end
 before_time = Time.now
 ARGV.each do |fname|
   case fname
-  when '-v'
+  when "-v"
     verbose = true
     next
   when /^-t(0\.91|1\.0|2\.0|atom)$/

@@ -55,20 +55,20 @@ module RSS
 
     def test_channel
       h = {
-        'title' => "fugafuga",
-        'link' => "http://hoge.com",
-        'description' => "fugafugafugafuga",
+        "title" => "fugafuga",
+        "link" => "http://hoge.com",
+        "description" => "fugafugafugafuga",
 
-        'language' => "en-us",
-        'copyright' => "Copyright 2002, Spartanburg Herald-Journal",
-        'managingEditor' => "geo@herald.com (George Matesky)",
-        'webMaster' => "betty@herald.com (Betty Guernsey)",
-        'pubDate' => Time.parse("Sat, 07 Sep 2002 00:00:01 GMT"),
-        'lastBuildDate' => Time.parse("Sat, 07 Sep 2002 09:42:31 GMT"),
-        'generator' => "MightyInHouse Content System v2.3",
-        'docs' => "http://blogs.law.harvard.edu/tech/rss",
-        'ttl' => "60",
-        'rating' => '(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.rsac.org" on "1996.04.16T08:15-0500" r (n 0 s 0 v 0 l 0))',
+        "language" => "en-us",
+        "copyright" => "Copyright 2002, Spartanburg Herald-Journal",
+        "managingEditor" => "geo@herald.com (George Matesky)",
+        "webMaster" => "betty@herald.com (Betty Guernsey)",
+        "pubDate" => Time.parse("Sat, 07 Sep 2002 00:00:01 GMT"),
+        "lastBuildDate" => Time.parse("Sat, 07 Sep 2002 09:42:31 GMT"),
+        "generator" => "MightyInHouse Content System v2.3",
+        "docs" => "http://blogs.law.harvard.edu/tech/rss",
+        "ttl" => "60",
+        "rating" => '(PICS-1.1 "http://www.rsac.org/ratingsv01.html" l gen true comment "RSACi North America Server" for "http://www.rsac.org" on "1996.04.16T08:15-0500" r (n 0 s 0 v 0 l 0))',
       }
       categories = [
         {
@@ -173,7 +173,7 @@ module RSS
       image_params.each do |name, value|
         value = image.__send__(name)
         actual = image_elem.elements[name.to_s].text
-        actual = actual.to_i if [:width, :height].include?(name)
+        actual = actual.to_i if %i[width height].include?(name)
         assert_equal(value, actual)
       end
     end
@@ -238,12 +238,12 @@ module RSS
 
     def test_item
       h = {
-        'title' => "fugafuga",
-        'link' => "http://hoge.com/",
-        'description' => "text hoge fuga",
-        'author' => "oprah@oxygen.net",
-        'comments' => "http://www.myblog.org/cgi-local/mt/mt-comments.cgi?entry_id=290",
-        'pubDate' => Time.parse("Sat, 07 Sep 2002 00:00:01 GMT"),
+        "title" => "fugafuga",
+        "link" => "http://hoge.com/",
+        "description" => "text hoge fuga",
+        "author" => "oprah@oxygen.net",
+        "comments" => "http://www.myblog.org/cgi-local/mt/mt-comments.cgi?entry_id=290",
+        "pubDate" => Time.parse("Sat, 07 Sep 2002 00:00:01 GMT"),
       }
       categories = [
         {

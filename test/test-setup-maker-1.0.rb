@@ -328,12 +328,12 @@ module RSS
       encoding = "EUC-JP"
       standalone = true
 
-      href = 'a.xsl'
-      type = 'text/xsl'
-      title = 'sample'
-      media = 'printer'
-      charset = 'UTF-8'
-      alternate = 'yes'
+      href = "a.xsl"
+      type = "text/xsl"
+      title = "sample"
+      media = "printer"
+      charset = "UTF-8"
+      alternate = "yes"
 
       rss = RSS::Maker.make("1.0") do |maker|
         maker.encoding = encoding
@@ -374,12 +374,12 @@ module RSS
       encoding = "EUC-JP"
       standalone = true
 
-      href = 'a.xsl'
-      type = 'text/xsl'
-      title = 'sample'
-      media = 'printer'
-      charset = 'UTF-8'
-      alternate = 'yes'
+      href = "a.xsl"
+      type = "text/xsl"
+      title = "sample"
+      media = "printer"
+      charset = "UTF-8"
+      alternate = "yes"
 
       channel_about = "http://hoge.com"
       channel_title = "fugafuga"

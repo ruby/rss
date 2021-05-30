@@ -202,12 +202,12 @@ module RSS
       encoding = "EUC-JP"
       standalone = true
 
-      href = 'a.xsl'
-      type = 'text/xsl'
-      title = 'sample'
-      media = 'printer'
-      charset = 'UTF-8'
-      alternate = 'yes'
+      href = "a.xsl"
+      type = "text/xsl"
+      title = "sample"
+      media = "printer"
+      charset = "UTF-8"
+      alternate = "yes"
 
       rss = RSS::Maker.make("0.91") do |maker|
         maker.encoding = encoding

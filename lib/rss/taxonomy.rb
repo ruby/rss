@@ -56,7 +56,7 @@ module RSS
       @tag_name = "topics"
 
       install_have_child_element("Bag", RDF::URI, nil)
-      install_must_call_validator('rdf', RDF::URI)
+      install_must_call_validator("rdf", RDF::URI)
 
       def initialize(*args)
         if Utils.element_initialize_arguments?(args)

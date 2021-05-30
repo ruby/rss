@@ -1,9 +1,9 @@
 # frozen_string_literal: false
-require 'rss/1.0'
+require "rss/1.0"
 
 module RSS
   # The prefix for the Slash XML namespace.
-  SLASH_PREFIX = 'slash'
+  SLASH_PREFIX = "slash"
   # The URI of the Slash specification.
   SLASH_URI = "http://purl.org/rss/1.0/modules/slash/"
 

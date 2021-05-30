@@ -71,12 +71,12 @@ module RSS
       rss_item.about = item_link
 
       h = {
-        'title' => "fugafuga",
-        'link' => "http://hoge.com",
-        'description' => "fugafugafugafuga",
-        'image' => image,
-        'items' => items,
-        'textinput' => textinput,
+        "title" => "fugafuga",
+        "link" => "http://hoge.com",
+        "description" => "fugafugafugafuga",
+        "image" => image,
+        "items" => items,
+        "textinput" => textinput,
       }
 
       channel = RDF::Channel.new(about)
@@ -200,16 +200,16 @@ EOR
 
       res = l.attributes.get_attribute("resource")
 
-      assert_equal('', res.instance_eval("@prefix"))
+      assert_equal("", res.instance_eval("@prefix"))
       assert_equal(resource, res.value)
     end
 
     def test_image
       about = "http://hoge.com"
       h = {
-        'title' => "fugafuga",
-        'url' => "http://hoge.com/hoge",
-        'link' => "http://hoge.com/fuga",
+        "title" => "fugafuga",
+        "url" => "http://hoge.com/hoge",
+        "link" => "http://hoge.com/fuga",
       }
 
       image = RDF::Image.new(about)
@@ -232,9 +232,9 @@ EOR
     def test_item
       about = "http://hoge.com"
       h = {
-        'title' => "fugafuga",
-        'link' => "http://hoge.com/fuga",
-        'description' => "hogehogehoge",
+        "title" => "fugafuga",
+        "link" => "http://hoge.com/fuga",
+        "description" => "hogehogehoge",
       }
 
       item = RDF::Item.new(about)
@@ -257,10 +257,10 @@ EOR
     def test_textinput
       about = "http://hoge.com"
       h = {
-        'title' => "fugafuga",
-        'link' => "http://hoge.com/fuga",
-        'name' => "foo",
-        'description' => "hogehogehoge",
+        "title" => "fugafuga",
+        "link" => "http://hoge.com/fuga",
+        "name" => "foo",
+        "description" => "hogehogehoge",
       }
 
       textinput = RDF::Textinput.new(about)

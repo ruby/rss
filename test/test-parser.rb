@@ -20,7 +20,7 @@ EOR
       @rss_tmp.print(@rss10)
       @rss_tmp.close
       @rss_file = @rss_tmp.path
-      @rss_file.untaint if RUBY_VERSION < '2.7'
+      @rss_file.untaint if RUBY_VERSION < "2.7"
     end
 
     def teardown

@@ -70,15 +70,15 @@ module RSS
         end
 
         [
-          ["pubDate", '?'],
+          ["pubDate", "?"],
         ].each do |name, occurs|
-          install_date_element(name, "", occurs, name, 'rfc822')
+          install_date_element(name, "", occurs, name, "rfc822")
         end
         alias date pubDate
         alias date= pubDate=
 
         [
-          ["guid", '?'],
+          ["guid", "?"],
         ].each do |name, occurs|
           install_have_child_element(name, "", occurs)
         end

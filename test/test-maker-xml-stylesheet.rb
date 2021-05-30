@@ -7,12 +7,12 @@ module RSS
   class TestMakerXMLStyleSheet < TestCase
 
     def test_xml_stylesheet
-      href = 'a.xsl'
-      type = 'text/xsl'
-      title = 'sample'
-      media = 'printer'
-      charset = 'UTF-8'
-      alternate = 'yes'
+      href = "a.xsl"
+      type = "text/xsl"
+      title = "sample"
+      media = "printer"
+      charset = "UTF-8"
+      alternate = "yes"
 
       rss = RSS::Maker.make("1.0") do |maker|
         maker.xml_stylesheets.new_xml_stylesheet do |xss|
@@ -37,8 +37,8 @@ module RSS
       assert_equal(alternate, xss.alternate)
 
 
-      href = 'http://example.com/index.xsl'
-      type = 'text/xsl'
+      href = "http://example.com/index.xsl"
+      type = "text/xsl"
       rss = RSS::Maker.make("1.0") do |maker|
         maker.xml_stylesheets.new_xml_stylesheet do |_xss|
           _xss.href = href
@@ -54,7 +54,7 @@ module RSS
     end
 
     def test_not_valid_xml_stylesheet
-      href = 'xss.XXX'
+      href = "xss.XXX"
       type = "text/xsl"
 
       rss = RSS::Maker.make("1.0") do |maker|

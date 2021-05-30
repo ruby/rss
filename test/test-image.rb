@@ -18,7 +18,7 @@ module RSS
         "rdf:about" => "http://www.kuro5hin.org/favicon.ico",
         "#{@prefix}:size" => "small",
       }
-      @favicon_contents = {"dc:title" => "Kuro5hin",}
+      @favicon_contents = {"dc:title" => "Kuro5hin", }
       @items = [
         [
           {

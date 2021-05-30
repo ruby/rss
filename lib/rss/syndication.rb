@@ -3,7 +3,7 @@ require "rss/1.0"
 
 module RSS
   # The prefix for the Syndication XML namespace.
-  SY_PREFIX = 'sy'
+  SY_PREFIX = "sy"
   # The URI of the Syndication specification.
   SY_URI = "http://purl.org/rss/1.0/modules/syndication/"
 
@@ -31,7 +31,7 @@ module RSS
 
         %w(updateBase).each do |name|
           install_date_element(name, SY_URI, "?",
-                               "#{SY_PREFIX}_#{name}", 'w3cdtf',
+                               "#{SY_PREFIX}_#{name}", "w3cdtf",
                                "#{SY_PREFIX}:#{name}")
         end
       end

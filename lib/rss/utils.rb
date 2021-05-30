@@ -81,7 +81,7 @@ module RSS
     #
     #   # => ["test.rb", 8]
     def get_file_and_line_from_caller(i=0)
-      file, line, = caller[i].split(':')
+      file, line, = caller[i].split(":")
       line = line.to_i
       line += 1 if i.zero?
       [file, line]

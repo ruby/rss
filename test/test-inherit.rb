@@ -8,7 +8,7 @@ module RSS
 
     class InheritedImage < RSS::RDF::Image
       def self.indent_size; 1; end
-      def self.tag_name; 'image'; end
+      def self.tag_name; "image"; end
     end
 
     def setup

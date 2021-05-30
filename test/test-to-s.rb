@@ -106,7 +106,7 @@ module RSS
     def test_time_w3cdtf
       assert_equal("2015-09-05T01:25:48.0001Z",
                    Time.utc(2015, 9, 5, 1, 25, 48, 100).w3cdtf,
-                   '[ruby-core:70667] [Bug #11509]')
+                   "[ruby-core:70667] [Bug #11509]")
     end
 
     def test_20_empty_text
@@ -121,14 +121,14 @@ module RSS
 
       parsed_rss = RSS::Parser.parse(rss.to_s)
       assert_equal({
-                     title: title,
-                     link: link,
-                     description: description,
+                     :title => title,
+                     :link => link,
+                     :description => description,
                    },
                    {
-                     title: parsed_rss.channel.title,
-                     link: parsed_rss.channel.link,
-                     description: parsed_rss.channel.description,
+                     :title => parsed_rss.channel.title,
+                     :link => parsed_rss.channel.link,
+                     :description => parsed_rss.channel.description,
                    },
                    "[ruby-core:80965] [Bug #13531]")
     end

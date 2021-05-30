@@ -455,11 +455,11 @@ module RSS
       _wrap_assertion do
         href = "http://example.com/atom.xml"
         optvs = {
-          'rel' => "self",
-          'type' => "application/atom+xml",
-          'hreflang' => "ja",
-          'title' => "Atom Feed",
-          'length' => "801",
+          "rel" => "self",
+          "type" => "application/atom+xml",
+          "hreflang" => "ja",
+          "title" => "Atom Feed",
+          "length" => "801",
         }
 
         link = target_class.new

@@ -4,8 +4,8 @@ require "nkf"
 class String
   # From tdiary.rb
   def shorten( len = 120 )
-    lines = NKF::nkf( "-t -m0 -f#{len}", self.gsub( /\n/, ' ' ) ).split( /\n/ )
-    lines[0].concat( '...' ) if lines[0] and lines[1]
+    lines = NKF::nkf( "-t -m0 -f#{len}", self.gsub( /\n/, " " ) ).split( /\n/ )
+    lines[0].concat( "..." ) if lines[0] and lines[1]
     lines[0]
   end
 end
@@ -26,7 +26,7 @@ def error(exception)
 end
 before_time = Time.now
 ARGV.each do |fname|
-  if fname == '-v'
+  if fname == "-v"
     verbose = true
     next
   end

@@ -1,5 +1,5 @@
 # frozen_string_literal: false
-require 'erb'
+require "erb"
 
 module RSS
   module Assertions

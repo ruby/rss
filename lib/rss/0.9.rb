@@ -43,7 +43,7 @@ module RSS
     def self.append_features(klass)
       super
 
-      klass.install_must_call_validator('', "")
+      klass.install_must_call_validator("", "")
     end
   end
 
@@ -279,12 +279,12 @@ module RSS
         include RSS09
 
         [
-          ["title", '?', :text],
-          ["link", '?', :text],
-          ["description", '?', :text],
-          ["category", '*', :have_children, "categories"],
-          ["source", '?', :have_child],
-          ["enclosure", '?', :have_child],
+          ["title", "?", :text],
+          ["link", "?", :text],
+          ["description", "?", :text],
+          ["category", "*", :have_children, "categories"],
+          ["source", "?", :have_child],
+          ["enclosure", "?", :have_child],
         ].each do |tag, occurs, type, *args|
           __send__("install_#{type}_element", tag, "", occurs, tag, *args)
         end
@@ -447,7 +447,7 @@ module RSS
     def initial_start_rss(tag_name, prefix, attrs, ns)
       check_ns(tag_name, prefix, ns, "", false)
 
-      @rss = Rss.new(attrs['version'], @version, @encoding, @standalone)
+      @rss = Rss.new(attrs["version"], @version, @encoding, @standalone)
       @rss.do_validate = @do_validate
       @rss.xml_stylesheets = @xml_stylesheets
       @last_element = @rss

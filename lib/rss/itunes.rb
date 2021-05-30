@@ -1,11 +1,11 @@
 # frozen_string_literal: false
-require 'rss/2.0'
+require "rss/2.0"
 
 module RSS
   # The prefix for the iTunes XML namespace.
-  ITUNES_PREFIX = 'itunes'
+  ITUNES_PREFIX = "itunes"
   # The URI of the iTunes specification.
-  ITUNES_URI = 'http://www.itunes.com/dtds/podcast-1.0.dtd'
+  ITUNES_URI = "http://www.itunes.com/dtds/podcast-1.0.dtd"
 
   Rss.install_ns(ITUNES_PREFIX, ITUNES_URI)
 
@@ -339,8 +339,8 @@ module RSS
                     duration.inspect
           end
 
-          if duration.include?(':')
-            components = duration.split(':')
+          if duration.include?(":")
+            components = duration.split(":")
             components[3..-1] = nil if components.size > 3
 
             components.unshift("00") until components.size == 3
@@ -357,10 +357,10 @@ module RSS
           if components.include?(nil)
             nil
           else
-            components.unshift(hours) if hours and hours > 0
+            components.unshift(hours) if hours&.positive?
             components.collect do |component|
               "%02d" % component
-            end.join(':')
+            end.join(":")
           end
         end
 

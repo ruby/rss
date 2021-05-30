@@ -42,7 +42,7 @@ module RSS
     def self.append_features(klass)
       super
 
-      klass.install_must_call_validator('', ::RSS::URI)
+      klass.install_must_call_validator("", ::RSS::URI)
     end
 
   end
@@ -60,12 +60,12 @@ module RSS
 
     end
 
-    @tag_name = 'RDF'
+    @tag_name = "RDF"
 
-    PREFIX = 'rdf'
+    PREFIX = "rdf"
     URI = "http://www.w3.org/1999/02/22-rdf-syntax-ns#"
 
-    install_ns('', ::RSS::URI)
+    install_ns("", ::RSS::URI)
     install_ns(PREFIX, URI)
 
     [
@@ -80,7 +80,7 @@ module RSS
 
     alias_method(:rss_version, :feed_version)
     def initialize(version=nil, encoding=nil, standalone=nil)
-      super('1.0', version, encoding, standalone)
+      super("1.0", version, encoding, standalone)
       @feed_type = "rss"
     end
 
@@ -130,10 +130,10 @@ module RSS
         end
       end
 
-      @tag_name = 'Seq'
+      @tag_name = "Seq"
 
       install_have_children_element("li", URI, "*")
-      install_must_call_validator('rdf', ::RSS::RDF::URI)
+      install_must_call_validator("rdf", ::RSS::RDF::URI)
 
       def initialize(*args)
         if Utils.element_initialize_arguments?(args)
@@ -167,10 +167,10 @@ module RSS
         end
       end
 
-      @tag_name = 'Bag'
+      @tag_name = "Bag"
 
       install_have_children_element("li", URI, "*")
-      install_must_call_validator('rdf', URI)
+      install_must_call_validator("rdf", URI)
 
       def initialize(*args)
         if Utils.element_initialize_arguments?(args)
@@ -212,12 +212,12 @@ module RSS
       end
 
       [
-        ['title', nil, :text],
-        ['link', nil, :text],
-        ['description', nil, :text],
-        ['image', '?', :have_child],
-        ['items', nil, :have_child],
-        ['textinput', '?', :have_child],
+        ["title", nil, :text],
+        ["link", nil, :text],
+        ["description", nil, :text],
+        ["image", "?", :have_child],
+        ["items", nil, :have_child],
+        ["textinput", "?", :have_child],
       ].each do |tag, occurs, type|
         __send__("install_#{type}_element", tag, ::RSS::URI, occurs)
       end
@@ -313,7 +313,7 @@ module RSS
         end
 
         install_have_child_element("Seq", URI, nil)
-        install_must_call_validator('rdf', URI)
+        install_must_call_validator("rdf", URI)
 
         def initialize(*args)
           if Utils.element_initialize_arguments?(args)

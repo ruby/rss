@@ -30,6 +30,16 @@ jobs:
       - name: Test
         run: bundle exec rake test
 
+  rubocop:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - uses: ruby/setup-ruby@v1
+        with:
+          ruby-version: 2.5
+          bundler-cache: true
+      - run: bundle exec rubocop --fail-fast
+
   gem:
     name: ${{ matrix.ruby-version }} on ${{ matrix.runs-on }}
     runs-on: ${{ matrix.runs-on }}

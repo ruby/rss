@@ -12,9 +12,9 @@ module RSS
         @to_encoding = to_enc
         return
       end
-      normalized_to_enc = to_enc.downcase.gsub(/-/, '_')
-      from_enc ||= 'utf-8'
-      normalized_from_enc = from_enc.downcase.gsub(/-/, '_')
+      normalized_to_enc = to_enc.downcase.gsub(/-/, "_")
+      from_enc ||= "utf-8"
+      normalized_from_enc = from_enc.downcase.gsub(/-/, "_")
       if normalized_to_enc == normalized_from_enc
         def_same_enc()
       else
@@ -69,7 +69,7 @@ module RSS
       def_iconv_convert(to_enc, from_enc, 0)
     end
 
-    def def_same_enc()
+    def def_same_enc
       def_convert do |value|
         value
       end
@@ -88,7 +88,7 @@ module RSS
           EOC
         end
       rescue LoadError
-        require 'nkf'
+        require "nkf"
         if NKF.const_defined?(:UTF8)
           def_convert(1) do |value|
             "NKF.nkf(#{nkf_arg.dump}, #{value})"
@@ -100,19 +100,19 @@ module RSS
     end
 
     def def_to_euc_jp_from_utf_8
-      def_uconv_convert_if_can('u8toeuc', 'EUC-JP', 'UTF-8', '-We')
+      def_uconv_convert_if_can("u8toeuc", "EUC-JP", "UTF-8", "-We")
     end
 
     def def_to_utf_8_from_euc_jp
-      def_uconv_convert_if_can('euctou8', 'UTF-8', 'EUC-JP', '-Ew')
+      def_uconv_convert_if_can("euctou8", "UTF-8", "EUC-JP", "-Ew")
     end
 
     def def_to_shift_jis_from_utf_8
-      def_uconv_convert_if_can('u8tosjis', 'Shift_JIS', 'UTF-8', '-Ws')
+      def_uconv_convert_if_can("u8tosjis", "Shift_JIS", "UTF-8", "-Ws")
     end
 
     def def_to_utf_8_from_shift_jis
-      def_uconv_convert_if_can('sjistou8', 'UTF-8', 'Shift_JIS', '-Sw')
+      def_uconv_convert_if_can("sjistou8", "UTF-8", "Shift_JIS", "-Sw")
     end
 
     def def_to_euc_jp_from_shift_jis

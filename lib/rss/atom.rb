@@ -1,5 +1,5 @@
 # frozen_string_literal: false
-require_relative 'parser'
+require_relative "parser"
 
 module RSS
   ##
@@ -287,7 +287,7 @@ module RSS
       include CommonModel
       include DuplicateLinkChecker
 
-      install_ns('', URI)
+      install_ns("", URI)
 
       [
        ["author", "*", :children],
@@ -670,7 +670,7 @@ module RSS
           def atom_validate(ignore_unknown_element, tags, uri)
             if out_of_line?
               raise MissingAttributeError.new(tag_name, "type") if @type.nil?
-              unless (content.nil? or content.empty?)
+              unless content.nil? or content.empty?
                 raise NotAvailableValueError.new(tag_name, content)
               end
             elsif inline_xhtml?
