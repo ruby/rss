@@ -5,6 +5,7 @@ Gem::Specification.new do |spec|
   spec.version       = RSS::VERSION
   spec.authors       = ["Kouhei Sutou"]
   spec.email         = ["kou@cozmixng.org"]
+  spec.required_ruby_version = ">= 2.5.0"
 
   spec.summary       = %q{Family of libraries that support various formats of XML "feeds".}
   spec.description   = %q{Family of libraries that support various formats of XML "feeds".}
