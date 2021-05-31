@@ -1,14 +1,14 @@
 # RSS
 
-Really Simple Syndication (RSS) is a family of formats that describe 'feeds,' specially constructed XML documents that allow an interested person to subscribe and receive updates from a particular web service. This portion of the standard library provides tooling to read and create these feeds.
+Really Simple Syndication (RSS) is a family of formats that describe _feeds_, specially constructed XML documents that allow an interested person to subscribe and receive updates from a particular web service. This portion of the standard library provides tooling to read and create these feeds.
 
 The standard library supports RSS 0.91, 1.0, 2.0, and Atom, a related format. Here are some links to the standards documents for these formats:
 
 * RSS
-  * [0.9.1][http://www.rssboard.org/rss-0-9-1-netscape]
-  * [1.0][http://web.resource.org/rss/1.0/]
-  * [2.0][http://www.rssboard.org/rss-specification]
-* [Atom][https://tools.ietf.org/html/rfc4287]
+  * [0.9.1](http://www.rssboard.org/rss-0-9-1-netscape)
+  * [1.0](http://web.resource.org/rss/1.0/)
+  * [2.0](http://www.rssboard.org/rss-specification)
+* [Atom](https://tools.ietf.org/html/rfc4287)
 
 ## Installation
 
@@ -32,7 +32,7 @@ Or install it yourself as:
 
 If you'd like to read someone's RSS feed with your Ruby code, you've come to the right place. It's really easy to do this, but we'll need the help of open-uri:
 
-```
+```ruby
   require 'rss'
   require 'open-uri'
 
@@ -52,7 +52,7 @@ As you can see, the workhorse is RSS::Parser#parse, which takes the source of th
 
 Producing our own RSS feeds is easy as well. Let's make a very basic feed:
 
-```
+```ruby
   require "rss"
 
   rss = RSS::Maker.make("atom") do |maker|
