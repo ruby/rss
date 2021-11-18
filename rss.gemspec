@@ -17,7 +17,6 @@ Gem::Specification.new do |spec|
     "README.md",
   ]
   spec.files += Dir.glob("lib/**/*.rb")
-  spec.test_files += Dir.glob("test/**/*")
   spec.require_paths = ["lib"]
 
   spec.add_dependency "rexml"
