@@ -748,7 +748,7 @@ EOC
         writer_type, reader_type = type
         def_corresponded_attr_writer name, writer_type, disp_name
         def_corresponded_attr_reader name, reader_type
-        if type == :boolean and /^is/ =~ name
+        if type == :boolean and /\Ais/ =~ name
           alias_method "#{$POSTMATCH}?", name
         end
         self::GET_ATTRIBUTES << [name, uri, required, element_name]
