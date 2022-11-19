@@ -578,7 +578,7 @@ EOC
     end
 
     def itunes_episode_writer(name, disp_name=name)
-      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+      module_eval(<<-EOC, *get_file_and_line_from_caller(2))
         def #{name}=(new_value)
           if @do_validate and
                !["episodic", "serial", nil].include?(new_value)
