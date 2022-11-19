@@ -542,7 +542,7 @@ EOC
     end
 
     def explicit_clean_other_writer(name, disp_name=name)
-      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+      module_eval(<<-EOC, *get_file_and_line_from_caller(2))
         def #{name}=(value)
           value = (value ? "yes" : "no") if [true, false].include?(value)
           @#{name} = value
@@ -551,7 +551,7 @@ EOC
     end
 
     def yes_other_writer(name, disp_name=name)
-      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+      module_eval(<<-EOC, *get_file_and_line_from_caller(2))
         def #{name}=(new_value)
           if [true, false].include?(new_value)
             new_value = new_value ? "yes" : "no"
@@ -562,7 +562,7 @@ EOC
     end
 
     def csv_writer(name, disp_name=name)
-      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+      module_eval(<<-EOC, *get_file_and_line_from_caller(2))
         def #{name}=(new_value)
           @#{name} = Utils::CSV.parse(new_value)
         end
@@ -570,7 +570,7 @@ EOC
     end
 
     def csv_integer_writer(name, disp_name=name)
-      module_eval(<<-EOC, __FILE__, __LINE__ + 1)
+      module_eval(<<-EOC, *get_file_and_line_from_caller(2))
         def #{name}=(new_value)
           @#{name} = Utils::CSV.parse(new_value) {|v| Integer(v)}
         end
