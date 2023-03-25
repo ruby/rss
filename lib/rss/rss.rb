@@ -495,6 +495,26 @@ EOC
 EOC
     end
 
+    def float_writer(name, disp_name=name)
+      module_eval(<<-CODE, *get_file_and_line_from_caller(2))
+        def #{name}=(new_value)
+          if new_value.nil?
+            @#{name} = new_value
+          else
+            if @do_validate
+              begin
+                @#{name} = Float(new_value)
+              rescue ArgumentError
+                raise NotAvailableValueError.new('#{disp_name}', new_value)
+              end
+            else
+              @#{name} = new_value.to_f
+            end
+          end
+        end
+      CODE
+    end
+
     def boolean_writer(name, disp_name=name)
       module_eval(<<-EOC, *get_file_and_line_from_caller(2))
       def #{name}=(new_value)
@@ -525,6 +545,15 @@ EOC
         @#{name} = new_value
       end
 EOC
+    end
+
+    def media_type_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate and !["plain", "html", nil].include?(new_value)
+          raise NotAvailableValueError.new(disp_name, new_value)
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
     end
 
     def content_writer(name, disp_name=name)
@@ -587,6 +616,79 @@ EOC
           @#{name} = new_value
         end
       EOC
+    end
+
+    def media_hash_algo_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate and !["md5", "sha-1", nil].include?(new_value)
+          raise NotAvailableValueError.new(disp_name, new_value)
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
+    end
+
+    def media_credit_scheme_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate and !["urn:ebu", "urn:yvs", nil].include?(new_value)
+          raise NotAvailableValueError.new(disp_name, new_value)
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
+    end
+
+    def media_tags_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        tags = {}
+        Utils::CSV.parse(new_value).each do |element|
+          tag_name, weight = element.strip.split(":", 2)
+          weight ||= 1
+          if @do_validate
+            begin
+              weight = Integer(weight)
+            rescue ArgumentError
+              raise NotAvailableValueError.new(disp_name, new_value)
+            end
+          else
+            weight = weight.to_i
+          end
+          tags[tag_name] = weight
+        end
+        instance_variable_set("@#{name}", tags)
+      end
+    end
+
+    def media_status_state_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate and
+           !["active", "blocked", "deleted", nil].include?(new_value)
+          raise NotAvailableValueError.new(disp_name, new_value)
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
+    end
+
+    def media_price_type_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate
+          available_types = ["rent", "purchase", "package", "subscription", nil]
+          unless available_types.include?(new_value)
+            raise NotAvailableValueError.new(disp_name, new_value)
+          end
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
+    end
+
+    def media_rights_status_writer(name, disp_name=name)
+      define_method("#{name}=") do |new_value|
+        if @do_validate
+          available_types = ["userCreated", "official", nil]
+          unless available_types.include?(new_value)
+            raise NotAvailableValueError.new(disp_name, new_value)
+          end
+        end
+        instance_variable_set("@#{name}", new_value)
+      end
     end
 
     def def_children_accessor(accessor_name, plural_name)
@@ -762,12 +864,16 @@ EOC
           integer_writer name, disp_name
         when :positive_integer
           positive_integer_writer name, disp_name
+        when :float
+          float_writer name, disp_name
         when :boolean
           boolean_writer name, disp_name
         when :w3cdtf, :rfc822, :rfc2822
           date_writer name, type, disp_name
         when :text_type
           text_type_writer name, disp_name
+        when :media_type
+          media_type_writer name, disp_name
         when :content
           content_writer name, disp_name
         when :explicit_clean_other
@@ -780,6 +886,18 @@ EOC
           csv_integer_writer name, disp_name
         when :itunes_episode
           itunes_episode_writer name, disp_name
+        when :media_hash_algo
+          media_hash_algo_writer name, disp_name
+        when :media_credit_scheme
+          media_credit_scheme_writer name, disp_name
+        when :media_tags
+          media_tags_writer name, disp_name
+        when :media_status_state
+          media_status_state_writer name, disp_name
+        when :media_price_type
+          media_price_type_writer name, disp_name
+        when :media_rights_status
+          media_rights_status_writer name, disp_name
         else
           attr_writer name
         end
