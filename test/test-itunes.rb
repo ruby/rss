@@ -117,6 +117,12 @@ module RSS
       end
     end
 
+    def test_title
+      assert_itunes_title(%w(items last)) do |content, xmlns|
+        make_rss20(make_channel20(make_item20(content)), xmlns)
+      end
+    end
+
     private
     def itunes_rss20_parse(content, &maker)
       xmlns = {"itunes" => "http://www.itunes.com/dtds/podcast-1.0.dtd"}
@@ -130,6 +136,15 @@ module RSS
         rss20 = itunes_rss20_parse(tag("itunes:author", author), &rss20_maker)
         target = chain_reader(rss20, readers)
         assert_equal(author, target.itunes_author)
+      end
+    end
+
+    def assert_itunes_title(readers, &rss20_maker)
+      _wrap_assertion do
+        title = "Interview with John Lennon"
+        rss20 = itunes_rss20_parse(tag("itunes:title", title), &rss20_maker)
+        target = chain_reader(rss20, readers)
+        assert_equal(title, target.itunes_title)
       end
     end
 
