@@ -81,6 +81,7 @@ module RSS
                      ["owner", :element],
                      ["new-feed-url"],
                      ["type", :itunes_episode],
+                     ["title"],
                     ] + ITunesBaseModel::ELEMENT_INFOS
 
     class ITunesCategory < Element
@@ -264,7 +265,7 @@ module RSS
         ["image", :attribute, "href"],
         ["season", :positive_integer],
         ["episode", :positive_integer],
-        ["title"]
+        ["title"],
       ]
 
     class ITunesImage < Element

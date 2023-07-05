@@ -118,6 +118,10 @@ module RSS
     end
 
     def test_title
+      assert_itunes_title(%w(channel)) do |content, xmlns|
+        make_rss20(make_channel20(content), xmlns)
+      end
+
       assert_itunes_title(%w(items last)) do |content, xmlns|
         make_rss20(make_channel20(make_item20(content)), xmlns)
       end
