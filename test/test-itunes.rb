@@ -139,15 +139,6 @@ module RSS
       end
     end
 
-    def assert_itunes_title(readers, &rss20_maker)
-      _wrap_assertion do
-        title = "Interview with John Lennon"
-        rss20 = itunes_rss20_parse(tag("itunes:title", title), &rss20_maker)
-        target = chain_reader(rss20, readers)
-        assert_equal(title, target.itunes_title)
-      end
-    end
-
     def _assert_itunes_block(value, boolean_value, readers, &rss20_maker)
       rss20 = itunes_rss20_parse(tag("itunes:block", value), &rss20_maker)
       target = chain_reader(rss20, readers)
@@ -380,6 +371,38 @@ module RSS
       end
     end
 
+    def _assert_itunes_summary(value, readers, &rss20_maker)
+      content = tag("itunes:summary", value)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      assert_equal(value, target.itunes_summary)
+    end
+
+    def assert_itunes_summary(readers, &rss20_maker)
+      _wrap_assertion do
+        _assert_itunes_summary("All About Everything is a show about " +
+                               "everything. Each week we dive into any " +
+                               "subject known to man and talk about it as " +
+                               "much as we can. Look for our Podcast in " +
+                               "the iTunes Music Store",
+                               readers, &rss20_maker)
+        _assert_itunes_summary("This week we talk about salt and pepper " +
+                               "shakers, comparing and contrasting pour " +
+                               "rates, construction materials, and overall " +
+                               "aesthetics. Come and join the party!",
+                               readers, &rss20_maker)
+        _assert_itunes_summary("This week we talk about metric vs. old " +
+                               "english socket wrenches. Which one is " +
+                               "better? Do you really need both? Get all " +
+                               "of your answers here.",
+                               readers, &rss20_maker)
+        _assert_itunes_summary("This week we talk about surviving in a " +
+                               "Red state if you're a Blue person. Or " +
+                               "vice versa.",
+                               readers, &rss20_maker)
+      end
+    end
+
     def set_itunes_season(season, readers, &rss20_maker)
        content = tag("itunes:season", season)
        rss20 = itunes_rss20_parse(content, &rss20_maker)
@@ -412,35 +435,12 @@ module RSS
       end
     end
 
-    def _assert_itunes_summary(value, readers, &rss20_maker)
-      content = tag("itunes:summary", value)
-      rss20 = itunes_rss20_parse(content, &rss20_maker)
-      target = chain_reader(rss20, readers)
-      assert_equal(value, target.itunes_summary)
-    end
-
-    def assert_itunes_summary(readers, &rss20_maker)
+    def assert_itunes_title(readers, &rss20_maker)
       _wrap_assertion do
-        _assert_itunes_summary("All About Everything is a show about " +
-                               "everything. Each week we dive into any " +
-                               "subject known to man and talk about it as " +
-                               "much as we can. Look for our Podcast in " +
-                               "the iTunes Music Store",
-                               readers, &rss20_maker)
-        _assert_itunes_summary("This week we talk about salt and pepper " +
-                               "shakers, comparing and contrasting pour " +
-                               "rates, construction materials, and overall " +
-                               "aesthetics. Come and join the party!",
-                               readers, &rss20_maker)
-        _assert_itunes_summary("This week we talk about metric vs. old " +
-                               "english socket wrenches. Which one is " +
-                               "better? Do you really need both? Get all " +
-                               "of your answers here.",
-                               readers, &rss20_maker)
-        _assert_itunes_summary("This week we talk about surviving in a " +
-                               "Red state if you're a Blue person. Or " +
-                               "vice versa.",
-                               readers, &rss20_maker)
+        title = "Interview with John Lennon"
+        rss20 = itunes_rss20_parse(tag("itunes:title", title), &rss20_maker)
+        target = chain_reader(rss20, readers)
+        assert_equal(title, target.itunes_title)
       end
     end
   end
