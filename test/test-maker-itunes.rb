@@ -60,8 +60,12 @@ module RSS
       assert_maker_itunes_summary(%w(items last))
     end
 
-    private
+    def test_title
+      assert_maker_itunes_title(%w(channel))
+      assert_maker_itunes_title(%w(items last))
+    end
 
+    private
     def assert_maker_itunes_author(maker_readers, feed_readers=nil)
       _wrap_assertion do
         feed_readers ||= maker_readers
@@ -501,6 +505,22 @@ module RSS
                                      "Red state if you're a Blue person. Or " +
                                      "vice versa.",
                                      maker_readers, feed_readers)
+      end
+    end
+
+    def assert_maker_itunes_title(maker_readers, feed_readers=nil)
+      _wrap_assertion do
+        feed_readers ||= maker_readers
+        title = "Interview with John Lennon"
+        rss20 = ::RSS::Maker.make("rss2.0") do |maker|
+          setup_dummy_channel(maker)
+          setup_dummy_item(maker)
+
+          target = chain_reader(maker, maker_readers)
+          target.itunes_title = title
+        end
+        target = chain_reader(rss20, feed_readers)
+        assert_equal(title, target.itunes_title)
       end
     end
   end
