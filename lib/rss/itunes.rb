@@ -264,6 +264,7 @@ module RSS
         ["image", :attribute, "href"],
         ["season", :positive_integer],
         ["episode", :positive_integer],
+        ["title"]
       ]
 
     class ITunesImage < Element
