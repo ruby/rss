@@ -265,6 +265,7 @@ module RSS
         ["image", :attribute, "href"],
         ["season", :positive_integer],
         ["episode", :positive_integer],
+        ["episodeType", :itunes_episode_type],
         ["title"],
       ]
 

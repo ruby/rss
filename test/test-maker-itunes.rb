@@ -60,6 +60,18 @@ module RSS
       assert_maker_itunes_summary(%w(items last))
     end
 
+    def test_season
+      assert_maker_itunes_season(%w(items last))
+    end
+
+    def test_episode
+      assert_maker_itunes_episode(%w(items last))
+    end
+
+    def test_episodeType
+      assert_maker_itunes_episodeType(%w(items last))
+    end
+
     def test_title
       assert_maker_itunes_title(%w(channel))
       assert_maker_itunes_title(%w(items last))
@@ -505,6 +517,54 @@ module RSS
                                      "Red state if you're a Blue person. Or " +
                                      "vice versa.",
                                      maker_readers, feed_readers)
+      end
+    end
+
+    def assert_maker_itunes_season(maker_readers, feed_readers=nil)
+      _wrap_assertion do
+        feed_readers ||= maker_readers
+        season = 1
+        rss20 = ::RSS::Maker.make("rss2.0") do |maker|
+          setup_dummy_channel(maker)
+          setup_dummy_item(maker)
+
+          target = chain_reader(maker, maker_readers)
+          target.itunes_season = season
+        end
+        target = chain_reader(rss20, feed_readers)
+        assert_equal(season, target.itunes_season)
+      end
+    end
+
+    def assert_maker_itunes_episode(maker_readers, feed_readers=nil)
+      _wrap_assertion do
+        feed_readers ||= maker_readers
+        episode = 1
+        rss20 = ::RSS::Maker.make("rss2.0") do |maker|
+          setup_dummy_channel(maker)
+          setup_dummy_item(maker)
+
+          target = chain_reader(maker, maker_readers)
+          target.itunes_episode = episode
+        end
+        target = chain_reader(rss20, feed_readers)
+        assert_equal(episode, target.itunes_episode)
+      end
+    end
+
+    def assert_maker_itunes_episodeType(maker_readers, feed_readers=nil)
+      _wrap_assertion do
+        feed_readers ||= maker_readers
+        episodeType = "Trailer"
+        rss20 = ::RSS::Maker.make("rss2.0") do |maker|
+          setup_dummy_channel(maker)
+          setup_dummy_item(maker)
+
+          target = chain_reader(maker, maker_readers)
+          target.itunes_episodeType = episodeType
+        end
+        target = chain_reader(rss20, feed_readers)
+        assert_equal(episodeType, target.itunes_episodeType)
       end
     end
 

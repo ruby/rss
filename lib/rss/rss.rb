@@ -589,6 +589,18 @@ EOC
       EOC
     end
 
+    def itunes_episode_type_writer(name, disp_name=name)
+      module_eval(<<-DEF, *get_file_and_line_from_caller(2))
+        def #{name}=(new_value)
+          if @do_validate and
+               !["Full", "Trailer", "Bonus", nil].include?(new_value)
+            raise NotAvailableValueError.new('#{disp_name}', new_value)
+          end
+          @#{name} = new_value
+        end
+      DEF
+    end
+
     def def_children_accessor(accessor_name, plural_name)
       module_eval(<<-EOC, *get_file_and_line_from_caller(2))
       def #{plural_name}
@@ -780,6 +792,8 @@ EOC
           csv_integer_writer name, disp_name
         when :itunes_episode
           itunes_episode_writer name, disp_name
+        when :itunes_episode_type
+          itunes_episode_type_writer name, disp_name
         else
           attr_writer name
         end

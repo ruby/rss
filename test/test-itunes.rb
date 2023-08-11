@@ -117,6 +117,12 @@ module RSS
       end
     end
 
+    def test_episodeType
+      assert_itunes_episodeType(%w(items last)) do |content, xmlns|
+         make_rss20(make_channel20(make_item20(content)), xmlns)
+      end
+    end
+
     def test_title
       assert_itunes_title(%w(channel)) do |content, xmlns|
         make_rss20(make_channel20(content), xmlns)
@@ -435,6 +441,23 @@ module RSS
         assert_equal(1, set_itunes_episode("1", readers, &rss20_maker))
         assert_raise(NotAvailableValueError.new("episode", "0")) do
           set_itunes_episode("0", readers, &rss20_maker)
+        end
+      end
+    end
+
+    def set_itunes_episodeType(episode_type, readers, &rss20_maker)
+      content = tag("itunes:episodeType", episode_type)
+      rss20 = itunes_rss20_parse(content, &rss20_maker)
+      target = chain_reader(rss20, readers)
+      target.itunes_episodeType
+    end
+
+    def assert_itunes_episodeType(readers, &rss20_maker)
+      _wrap_assertion do
+        assert_equal("Trailer",
+                     set_itunes_episodeType("Trailer", readers, &rss20_maker))
+        assert_raise(NotAvailableValueError.new("episodeType", "Unknown")) do
+          set_itunes_episodeType("Unknown", readers, &rss20_maker)
         end
       end
     end
