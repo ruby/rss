@@ -1,5 +1,43 @@
 # News
 
+## 0.3.0 - 2023-08-12
+
+### Improvements
+
+  * itunes: Added support for `<itunes:type>`.
+
+    GH-16
+
+    Patch by Luis Alfredo Lorenzo.
+
+  * itunes: Added support for `<itunes:episode>` and `<itunes:season>`.
+
+    GH-31
+
+    Patch by Daniel-Ernest Luff.
+
+  * itunes: Added support for `<itunes:title>`.
+
+    GH-44
+
+    Patch by Ryan Brunner.
+
+  * itunes: Added support for `<itunes:episodeType>`.
+
+    GH-45
+
+    Reported by Tim Uckun.
+
+### Thanks
+
+  * Luis Alfredo Lorenzo
+
+  * Daniel-Ernest Luff
+
+  * Ryan Brunner
+
+  * Tim Uckun
+
 ## 0.2.9 - 2020-02-19
 
 ### Improvements
