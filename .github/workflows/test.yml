@@ -3,7 +3,14 @@ on:
   - push
   - pull_request
 jobs:
+  ruby-versions:
+    uses: ruby/actions/.github/workflows/ruby_versions.yml@master
+    with:
+      engine: cruby-jruby
+      min_version: 2.5
+
   inplace:
+    needs: ruby-versions
     name: ${{ matrix.ruby-version }} on ${{ matrix.runs-on }}
     runs-on: ${{ matrix.runs-on }}
     strategy:
@@ -13,14 +20,7 @@ jobs:
           - ubuntu-latest
           - macos-latest
           - windows-latest
-        ruby-version:
-          - "2.5"
-          - "2.6"
-          - "2.7"
-          - "3.0"
-          - "3.1"
-          - "3.2"
-          - jruby
+        ruby-version: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
         # include:
         #   - runs-on: ubuntu-latest
         #     ruby-version: truffleruby
