@@ -456,6 +456,8 @@ module RSS
       _wrap_assertion do
         assert_equal("Trailer",
                      set_itunes_episodeType("Trailer", readers, &rss20_maker))
+        assert_equal("trailer",
+                     set_itunes_episodeType("trailer", readers, &rss20_maker))
         assert_raise(NotAvailableValueError.new("episodeType", "Unknown")) do
           set_itunes_episodeType("Unknown", readers, &rss20_maker)
         end

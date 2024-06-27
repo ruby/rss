@@ -593,7 +593,7 @@ EOC
       module_eval(<<-DEF, *get_file_and_line_from_caller(2))
         def #{name}=(new_value)
           if @do_validate and
-               !["Full", "Trailer", "Bonus", nil].include?(new_value)
+               !["Full", "full", "Trailer", "trailer", "Bonus", "bonus", nil].include?(new_value)
             raise NotAvailableValueError.new('#{disp_name}', new_value)
           end
           @#{name} = new_value
