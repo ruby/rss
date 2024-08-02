@@ -1,5 +1,21 @@
 # News
 
+## 0.3.1 - 2024-08-02
+
+### Improvements
+
+  * itunes: Add support for lowercased values (`full`, `trailer` and
+    `bonus`) for `<itunes:episodeType>`.
+    * GH-51
+    * GH-53
+    * Reported by Artem Alimov.
+    * Patch by Andrew H Schwartz.
+
+### Thanks
+
+  * Artem Alimov
+  * Andrew H Schwartz
+
 ## 0.3.0 - 2023-08-12
 
 ### Improvements
