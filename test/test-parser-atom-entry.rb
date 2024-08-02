@@ -18,36 +18,32 @@ EOA
 EOA
       end
 
-      assert_parse(<<-EOA, :missing_tag, "id", "entry") do
+      assert_parse(<<-EOA, :missing_tag, "id", "entry")
 <entry xmlns="#{Atom::URI}"/>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "title", "entry") do
+      assert_parse(<<-EOA, :missing_tag, "title", "entry")
 <entry xmlns="#{Atom::URI}">
   <id>urn:uuid:506e336c-a26e-4457-917b-b89dca7ae746</id>
 </entry>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "updated", "entry") do
+      assert_parse(<<-EOA, :missing_tag, "updated", "entry")
 <entry xmlns="#{Atom::URI}">
   <id>urn:uuid:506e336c-a26e-4457-917b-b89dca7ae746</id>
   <title>Example Entry</title>
 </entry>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "author", "entry") do
+      assert_parse(<<-EOA, :missing_tag, "author", "entry")
 <entry xmlns="#{Atom::URI}">
   <id>urn:uuid:506e336c-a26e-4457-917b-b89dca7ae746</id>
   <title>Example Entry</title>
   <updated>2003-10-10T18:30:02Z</updated>
 </entry>
 EOA
-      end
 
-      assert_parse(<<-EOA, :nothing_raised) do
+      assert_parse(<<-EOA, :nothing_raised)
 <entry xmlns="#{Atom::URI}">
   <id>urn:uuid:506e336c-a26e-4457-917b-b89dca7ae746</id>
   <title>Example Entry</title>
@@ -57,7 +53,6 @@ EOA
   </author>
 </entry>
 EOA
-      end
     end
 
     def test_entry

@@ -18,36 +18,32 @@ EOA
 EOA
       end
 
-      assert_parse(<<-EOA, :missing_tag, "id", "feed") do
+      assert_parse(<<-EOA, :missing_tag, "id", "feed")
 <feed xmlns="#{Atom::URI}"/>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "title", "feed") do
+      assert_parse(<<-EOA, :missing_tag, "title", "feed")
 <feed xmlns="#{Atom::URI}">
   <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
 </feed>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "updated", "feed") do
+      assert_parse(<<-EOA, :missing_tag, "updated", "feed")
 <feed xmlns="#{Atom::URI}">
   <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
   <title>Example Feed</title>
 </feed>
 EOA
-      end
 
-      assert_parse(<<-EOA, :missing_tag, "author", "feed") do
+      assert_parse(<<-EOA, :missing_tag, "author", "feed")
 <feed xmlns="#{Atom::URI}">
   <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
   <title>Example Feed</title>
   <updated>2003-12-13T18:30:02Z</updated>
 </feed>
 EOA
-      end
 
-      assert_parse(<<-EOA, :nothing_raised) do
+      assert_parse(<<-EOA, :nothing_raised)
 <feed xmlns="#{Atom::URI}">
   <id>urn:uuid:60a76c80-d399-11d9-b93C-0003939e0af6</id>
   <title>Example Feed</title>
@@ -57,7 +53,6 @@ EOA
   </author>
 </feed>
 EOA
-      end
     end
 
     def test_lang
