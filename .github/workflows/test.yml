@@ -57,6 +57,9 @@ jobs:
       - name: Install as gem
         run: |
           rake install
+      - name: Install test dependencies
+        run: |
+          gem install test-unit
       - name: Test
         run: |
           ruby -run -e mkdir -- tmp
