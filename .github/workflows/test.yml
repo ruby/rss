@@ -21,6 +21,9 @@ jobs:
           - macos-latest
           - windows-latest
         ruby-version: ${{ fromJson(needs.ruby-versions.outputs.versions) }}
+        exclude:
+          - runs-on: macos-latest
+            ruby-version: "2.5"
         # include:
         #   - runs-on: ubuntu-latest
         #     ruby-version: truffleruby
