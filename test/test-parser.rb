@@ -43,6 +43,12 @@ EOR
 
       garbage_rss_file = @rss_file + "-garbage"
       if RSS::Parser.default_parser.name == "RSS::XMLParserParser"
+        is_strict_parser = true
+      elsif RSS::Parser.default_parser.name == "RSS::REXMLParser"
+        is_strict_parser =
+          (Gem::Version.new(REXML::VERSION) >= Gem::Version.new("3.3.3"))
+      end
+      if is_strict_parser
         assert_raise(RSS::NotWellFormedError) do
           RSS::Parser.parse(garbage_rss_file)
         end
