@@ -27,5 +27,6 @@ jobs:
         with:
           ruby-version: ruby
           bundler-cache: true
+          cache-version: rexml
       - name: Test
         run: bundle exec rake test
