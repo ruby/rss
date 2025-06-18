@@ -30,20 +30,16 @@ Or install it yourself as:
 
 ### Consuming RSS
 
-If you'd like to read someone's RSS feed with your Ruby code, you've come to the right place. It's really easy to do this, but we'll need the help of open-uri:
+If you'd like to read someone's RSS feed with your Ruby code, you've come to the right place. It's really easy to do this:
 
 ```ruby
-  require 'rss'
-  require 'open-uri'
+require 'rss'
 
-  url = 'https://www.ruby-lang.org/en/feeds/news.rss'
-  URI.open(url) do |rss|
-    feed = RSS::Parser.parse(rss)
-    puts "Title: #{feed.channel.title}"
-    feed.items.each do |item|
-      puts "Item: #{item.title}"
-    end
-  end
+feed = RSS::Parser.parse('https://www.ruby-lang.org/en/feeds/news.rss')
+puts "Title: #{feed.channel.title}"
+feed.items.each do |item|
+  puts "Item: #{item.title}"
+end
 ```
 
 As you can see, the workhorse is RSS::Parser#parse, which takes the source of the feed and a parameter that performs validation on the feed. We get back an object that has all of the data from our feed, accessible through methods. This example shows getting the title out of the channel element, and looping through the list of items.
