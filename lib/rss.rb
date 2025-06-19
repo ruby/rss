@@ -19,19 +19,14 @@
 # == Consuming RSS
 #
 # If you'd like to read someone's RSS feed with your Ruby code, you've come to
-# the right place. It's really easy to do this, but we'll need the help of
-# open-uri:
+# the right place. It's really easy to do this.
 #
 #   require 'rss'
-#   require 'open-uri'
 #
-#   url = 'http://www.ruby-lang.org/en/feeds/news.rss'
-#   URI.open(url) do |rss|
-#     feed = RSS::Parser.parse(rss)
-#     puts "Title: #{feed.channel.title}"
-#     feed.items.each do |item|
-#       puts "Item: #{item.title}"
-#     end
+#   feed = RSS::Parser.parse('https://www.ruby-lang.org/en/feeds/news.rss')
+#   puts "Title: #{feed.channel.title}"
+#   feed.items.each do |item|
+#     puts "Item: #{item.title}"
 #   end
 #
 # As you can see, the workhorse is RSS::Parser#parse, which takes the source of
