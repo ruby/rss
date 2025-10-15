@@ -1,5 +1,5 @@
 # frozen_string_literal: false
-require "cgi"
+require "cgi/escape"
 
 require_relative "rss-testcase"
 
