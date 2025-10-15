@@ -1,7 +1,7 @@
 # frozen_string_literal: false
 
 require "English"
-require "cgi/util"
+require "cgi/escape"
 require "time"
 
 class Time

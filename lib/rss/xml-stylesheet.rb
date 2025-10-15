@@ -1,6 +1,6 @@
 # frozen_string_literal: false
 
-require "cgi/util"
+require "cgi/escape"
 
 module RSS
 
