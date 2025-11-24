@@ -18,8 +18,8 @@ jobs:
     env:
       RSS_REXML_PATH: ${{ github.workspace }}/rexml
     steps:
-      - uses: actions/checkout@v5
-      - uses: actions/checkout@v5
+      - uses: actions/checkout@v6
+      - uses: actions/checkout@v6
         with:
           path: rexml
           repository: ruby/rexml
