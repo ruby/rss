@@ -1,5 +1,22 @@
 # News
 
+## 0.3.2 - 2025-12-19
+
+### Improvements
+
+  * Updated documents.
+    * GH-59
+    * Patch by 1s22s1.
+
+  * Added support for Ruby 4.0.0.
+    * GH-62
+    * Patch by Taketo Takashima.
+
+### Thanks
+
+  * 1s22s1
+  * Taketo Takashima
+
 ## 0.3.1 - 2024-08-02
 
 ### Improvements
