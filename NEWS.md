@@ -1,5 +1,18 @@
 # News
 
+## 0.3.3 - 2026-06-10
+
+### Improvements
+
+  * Improved PI content parse performance.
+    * GH-66
+    * GH-67
+    * Patch by Connor Shea.
+
+### Thanks
+
+  * Connor Shea
+
 ## 0.3.2 - 2025-12-19
 
 ### Improvements
