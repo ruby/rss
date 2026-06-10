@@ -391,7 +391,7 @@ module RSS
       ns.fetch(prefix, "")
     end
 
-    CONTENT_PATTERN = /\s*([^=]+)=(["'])([^\2]+?)\2/
+    CONTENT_PATTERN = /\G\s*([^=]+)=(["'])([^\2]+?)\2/
     # Extract the first name="value" pair from content.
     # Works with single quotes according to the constant
     # CONTENT_PATTERN. Return a Hash.
