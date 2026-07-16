@@ -69,6 +69,46 @@ Producing our own RSS feeds is easy as well. Let's make a very basic feed:
 
 As you can see, this is a very Builder-like DSL. This code will spit out an Atom feed with one item. If we needed a second item, we'd make another block with maker.items.new_item and build a second one.
 
+### Producing an iTunes podcast feed
+
+The iTunes podcast namespace is supported for RSS 2.0 feeds. Set iTunes channel and item elements with the corresponding `itunes_` accessors:
+
+```ruby
+require "rss"
+
+rss = RSS::Maker.make("2.0") do |maker|
+  maker.channel.title = "Example Podcast"
+  maker.channel.link = "https://example.com/podcast"
+  maker.channel.description = "An example podcast feed"
+  maker.channel.itunes_author = "Example Author"
+  maker.channel.itunes_summary = "A podcast created with RSS::Maker"
+  maker.channel.itunes_image = "https://example.com/podcast.png"
+  maker.channel.itunes_explicit = false
+  maker.channel.itunes_type = "serial"
+  maker.channel.itunes_owner.itunes_name = "Example Author"
+  maker.channel.itunes_owner.itunes_email = "author@example.com"
+  maker.channel.itunes_categories.new_category.text = "Technology"
+
+  maker.items.new_item do |item|
+    item.title = "Episode 1"
+    item.link = "https://example.com/podcast/1"
+    item.itunes_title = "Getting started"
+    item.itunes_author = "Example Author"
+    item.itunes_summary = "The first episode"
+    item.itunes_duration = "12:34"
+    item.itunes_season = 1
+    item.itunes_episode = 1
+    item.itunes_episodeType = "full"
+
+    item.enclosure.url = "https://example.com/podcast/1.mp3"
+    item.enclosure.length = 12_345_678
+    item.enclosure.type = "audio/mpeg"
+  end
+end
+
+puts rss
+```
+
 ## Development
 
 After checking out the repo, run `rake test` to run the tests.
