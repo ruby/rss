@@ -92,14 +92,14 @@ module RSS
 EOR
       c = doc.root.elements[1]
 
-      assert_equal(about, c.attributes["about"])
+      assert_equal(about, c.attributes["rdf:about"])
       %w(title link description image textinput).each do |x|
         elem = c.elements[x]
         assert_equal(x, elem.name)
         assert_equal(@uri, elem.namespace)
         if x == "image" or x == "textinput"
           excepted = resource
-          res = elem.attributes.get_attribute("resource")
+          res = elem.attributes.get_attribute("rdf:resource")
           assert_equal(@rdf_uri, res.namespace)
           value = res.value
         else
@@ -122,7 +122,7 @@ EOR
       assert_equal("image", i.name)
       assert_equal(@uri, i.namespace)
 
-      res = i.attributes.get_attribute("resource")
+      res = i.attributes.get_attribute("rdf:resource")
 
       assert_equal(@rdf_uri, res.namespace)
       assert_equal(resource, res.value)
@@ -138,7 +138,7 @@ EOR
       assert_equal("textinput", t.name)
       assert_equal(@uri, t.namespace)
 
-      res = t.attributes.get_attribute("resource")
+      res = t.attributes.get_attribute("rdf:resource")
 
       assert_equal(@rdf_uri, res.namespace)
       assert_equal(resource, res.value)
@@ -220,7 +220,7 @@ EOR
       doc = REXML::Document.new(make_RDF(image.to_s))
       i = doc.root.elements[1]
 
-      assert_equal(about, i.attributes["about"])
+      assert_equal(about, i.attributes["rdf:about"])
       %w(title url link).each do |x|
         elem = i.elements[x]
         assert_equal(x, elem.name)
@@ -245,7 +245,7 @@ EOR
       doc = REXML::Document.new(make_RDF(item.to_s))
       i = doc.root.elements[1]
 
-      assert_equal(about, i.attributes["about"])
+      assert_equal(about, i.attributes["rdf:about"])
       %w(title link description).each do |x|
         elem = i.elements[x]
         assert_equal(x, elem.name)
@@ -271,7 +271,7 @@ EOR
       doc = REXML::Document.new(make_RDF(textinput.to_s))
       t = doc.root.elements[1]
 
-      assert_equal(about, t.attributes["about"])
+      assert_equal(about, t.attributes["rdf:about"])
       %w(title link name description).each do |x|
         elem = t.elements[x]
         assert_equal(x, elem.name)
