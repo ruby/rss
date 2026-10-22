@@ -70,6 +70,7 @@
 # http://www.cozmixng.org/~rwiki/?cmd=view;name=RSS+Parser%3A%3ATutorial.en
 
 module RSS
+  autoload :Maker, "rss/maker"
 end
 
 require "rss/version"
@@ -85,5 +86,3 @@ require "rss/slash"
 require "rss/syndication"
 require "rss/taxonomy"
 require "rss/trackback"
-
-require "rss/maker"
